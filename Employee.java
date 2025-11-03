@@ -11,6 +11,7 @@ public class Employee {
     private String socialSecurityNumber;
     private int birthMonth;
     private int birthWeek;
+    private double paycheck;
 
     Employee(String name, String socialSecurityNumber, int birthMonth, int birthWeek) {
         this.name = name;
@@ -35,6 +36,14 @@ public class Employee {
         return this.birthWeek;
     }
 
+    public double getPaycheck() {
+        return this.paycheck;
+    }
+
+    public void setPaycheck(double amount) {
+        this.paycheck = amount;
+    }
+
     // requires more to get entry and load - see requirement 2
     public static void load() {
         Scanner userInput = new Scanner(System.in);
@@ -49,15 +58,16 @@ public class Employee {
     public String toString() {
         String display = String.format("%s\t\t: %s\n%s\t: %s\n%s\t\t: $%s",
                 "Employee", this.getName(), "Social Security Number", this.getSocialSecurityNumber(),
-                "Paycheck", "<fix this>");
+                "Paycheck", Helper.formatTwoDecimals(getPaycheck()));
         return display;
     }
 
-
-    // once the pay check variable is created, match this part to auto increment the paycheck by 100 
+    // once the pay check variable is created, match this part to auto increment the
+    // paycheck by 100
     public double getBonus() {
         // part 4
-        // getting the current month and week to determine eligibility for $100 birthday bonus 
+        // getting the current month and week to determine eligibility for $100 birthday
+        // bonus
         Calendar calendar = Calendar.getInstance();
         int currentWeekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
         int currentMonth = calendar.get(Calendar.MONTH);
