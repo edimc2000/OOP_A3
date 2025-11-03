@@ -48,10 +48,10 @@ public class Hourly extends Employee {
         
         // // -------------------------
 
-        String[] rtest = { nameCapture, ssnCapture, birthMonthCapture, birthWeekCapture,
+        String[] capturedData = { nameCapture, ssnCapture, birthMonthCapture, birthWeekCapture,
                 hourlyPayCapture, hoursWorkedCapture };
 
-        return rtest;
+        return capturedData;
     }
 
     public double getEarnings() {

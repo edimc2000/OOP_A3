@@ -41,7 +41,8 @@ public class Employee {
     }
 
     public void setPaycheck(double amount) {
-        this.paycheck = amount;
+        
+        this.paycheck = amount > 1000 ? 1000 : amount;
     }
 
     public void setName(String name) {
@@ -63,30 +64,17 @@ public class Employee {
     public static String[] load() {
         Scanner userInput = new Scanner(System.in);
 
-        // --- below is the actual input capture --- ---
-        // out.print("Name \t: ");
-        // String nameCapture = userInput.nextLine();
-        // out.print("Social Security Number \t: ");
-        // String ssnCapture = userInput.nextLine();
-        // out.print("Birthday month \t: ");
-        // String birthMonthCapture = userInput.nextLine();
-        // out.print("Birthday bonus week \t: ");
-        // String birthWeekCapture = userInput.nextLine();
-        // -------------------------
+        out.print("Name \t: ");
+        String nameCapture = userInput.nextLine();
+        out.print("Social Security Number \t: ");
+        String ssnCapture = userInput.nextLine();
+        out.print("Birthday month \t: ");
+        String birthMonthCapture = userInput.nextLine();
+        out.print("Birthday bonus week \t: ");
+        String birthWeekCapture = userInput.nextLine();
 
-        // --- bdelete these test data --- ---
-        // out.print("Name \t: ");
-        String nameCapture = "Eddie";
-        // out.print("Social Security Number \t: ");
-        String ssnCapture = "123-556-665";
-        // out.print("Birthday month  \t: ");
-        String birthMonthCapture = "10";
-        // out.print("Birthday bonus week  \t: ");
-        String birthWeekCapture = "2";
-        // -------------------------
-
-        String[] rtest = { nameCapture, ssnCapture, birthMonthCapture, birthWeekCapture };
-        return rtest;
+        String[] capturedData = { nameCapture, ssnCapture, birthMonthCapture, birthWeekCapture };
+        return capturedData;
     }
 
     @Override // pay check computation missing
@@ -106,7 +94,9 @@ public class Employee {
         // bonus
         Calendar calendar = Calendar.getInstance();
         int currentWeekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
-        int currentMonth = calendar.get(Calendar.MONTH);
+        int currentMonth = calendar.get(Calendar.MONTH)+1;
+
+        out.println("\n\nDEBUG -- current M" + currentMonth+ " current W = " + currentWeekOfMonth +"\n\n");
         boolean isEligibleForBonus = (currentMonth == this.birthMonth) && (currentWeekOfMonth == this.birthWeek);
         return isEligibleForBonus ? 100 : 0;
     }
