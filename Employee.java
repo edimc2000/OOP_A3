@@ -11,7 +11,7 @@ public class Employee {
     private String socialSecurityNumber;
     private int birthMonth;
     private int birthWeek;
-    private double paycheck;
+    private double paycheck = 0;
 
     Employee(String name, String socialSecurityNumber, int birthMonth, int birthWeek) {
         this.name = name;
@@ -44,18 +44,54 @@ public class Employee {
         this.paycheck = amount;
     }
 
-    // requires more to get entry and load - see requirement 2
-    public static void load() {
-        Scanner userInput = new Scanner(System.in);
-        out.println("type Hourly(1), Salaried(2), Salaried plus Commission(3)");
-        out.println("Enter 1, 2, or 3 ==> ");
-        String employeeNumber = userInput.nextLine();
-        out.println("your entry is : " + employeeNumber);
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public void setSocialSecurityNumber(String socialSecurityNumber) {
+        this.socialSecurityNumber = socialSecurityNumber;
+    }
+
+    public void setBithMonth(int birthMonth) {
+        this.birthMonth = birthMonth;
+    }
+
+    public void setBirthWeek(int birthWeek) {
+        this.birthWeek = birthWeek;
+    }
+
+    public static String[] load() {
+        Scanner userInput = new Scanner(System.in);
+
+        // --- below is the actual input capture --- ---
+        // out.print("Name \t: ");
+        // String nameCapture = userInput.nextLine();
+        // out.print("Social Security Number \t: ");
+        // String ssnCapture = userInput.nextLine();
+        // out.print("Birthday month \t: ");
+        // String birthMonthCapture = userInput.nextLine();
+        // out.print("Birthday bonus week \t: ");
+        // String birthWeekCapture = userInput.nextLine();
+        // -------------------------
+
+        // --- bdelete these test data --- ---
+        // out.print("Name \t: ");
+        String nameCapture = "Eddie";
+        // out.print("Social Security Number \t: ");
+        String ssnCapture = "123-556-665";
+        // out.print("Birthday month  \t: ");
+        String birthMonthCapture = "10";
+        // out.print("Birthday bonus week  \t: ");
+        String birthWeekCapture = "2";
+        // -------------------------
+
+        String[] rtest = { nameCapture, ssnCapture, birthMonthCapture, birthWeekCapture };
+        return rtest;
     }
 
     @Override // pay check computation missing
     public String toString() {
+
         String display = String.format("%s\t\t: %s\n%s\t: %s\n%s\t\t: $%s",
                 "Employee", this.getName(), "Social Security Number", this.getSocialSecurityNumber(),
                 "Paycheck", Helper.formatTwoDecimals(getPaycheck()));

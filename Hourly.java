@@ -2,6 +2,8 @@ package OOP_A3;
 
 import static java.lang.System.*;
 
+import java.util.Scanner;
+
 public class Hourly extends Employee {
 
     private double hourlyPay;
@@ -15,6 +17,41 @@ public class Hourly extends Employee {
         this.hourlyPay = hourlyPay;
         this.hoursWorkForWeek = hoursWorkForWeek;
 
+    }
+
+    public static String[] load() {
+        Scanner userInput = new Scanner(System.in);
+
+        // --- below is the actual input capture --- ---
+        // out.print("Name \t: ");
+        // String nameCapture = userInput.nextLine();
+        // out.print("Social Security Number \t: ");
+        // String ssnCapture = userInput.nextLine();
+        // out.print("Birthday month \t: ");
+        // String birthMonthCapture = userInput.nextLine();
+        // out.print("Birthday bonus week \t: ");
+        // String birthWeekCapture = userInput.nextLine();
+        // out.print("Hourly pay \t: ");
+        // String hourlyPayCapture = userInput.nextLine();
+        // out.print("Hours worked this past week \t: ");
+        // String hoursWorkedCapture = userInput.nextLine();
+
+        // -------------------------
+
+        // // --- bdelete these test data --- ---
+        String nameCapture = "Eddie";
+        String ssnCapture = "123-556-665";
+        String birthMonthCapture = "10";
+        String birthWeekCapture = "2";
+        String hourlyPayCapture = "20"; 
+        String hoursWorkedCapture = "41"; 
+        
+        // // -------------------------
+
+        String[] rtest = { nameCapture, ssnCapture, birthMonthCapture, birthWeekCapture,
+                hourlyPayCapture, hoursWorkedCapture };
+
+        return rtest;
     }
 
     public double getEarnings() {
