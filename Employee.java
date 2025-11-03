@@ -53,7 +53,7 @@ public class Employee {
         this.socialSecurityNumber = socialSecurityNumber;
     }
 
-    public void setBithMonth(int birthMonth) {
+    public void setBirthMonth(int birthMonth) {
         this.birthMonth = birthMonth;
     }
 
