@@ -9,7 +9,7 @@ public class Utility {
 
     public static void displayTitle() {
         clearScreen();
-        out.println("\n*************** Payroll Management Application *******************\n");
+        out.println("\n*************** Payroll Management Application *******************");
     }
 
     public static void displayReportTitle() {
@@ -29,26 +29,34 @@ public class Utility {
     }
 
     public static boolean tryAgain(Scanner userInput) {
-        // userInput.nextLine(); // clears the buffer / empty lines
-        out.print("\nAdd more?\n (Y) for YES, any key for NO \t: ");
-        String response = userInput.nextLine();
-        boolean choice = response.toLowerCase().equals("y") ? true : false;
+        boolean isAddAnother = true;
+        String response = "y";
+        while (isAddAnother) {
+
+            out.print("\n Add another? (Y/N): \t: ");
+            response = userInput.nextLine().toLowerCase();
+            if (response.equals("y") || response.equals("n")) {
+                break;
+            }
+        }
+        boolean choice = response.equals("y") ? true : false;
         return choice;
     }
 
     public static String chooseEmployeeType(Scanner userInput) {
-        out.println("");
-        out.println("Type (1) Hourly, (2) Salaried, (3) Salaried plus Commission");
-        out.print("Enter 1, 2, or 3 \t\t: ");
+        out.println("\n----------------");
+        out.println("Select Pay Type");
+        out.println("----------------");
+        out.println(" 1 - Hourly\n 2 - Salaried \n 3 - Salaried plus Commission \n");
+        out.print("Enter your choice (1-3) \t: ");
+
         return userInput.nextLine();
     }
 
-
-    
-    public static void addEmployee(Scanner userInput, 
-    ArrayList<Employee> hourlyArr, 
-    ArrayList<Employee> salariedArr, 
-    ArrayList<Employee> salariedPlusCommissionArr) {
+    public static void addEmployee(Scanner userInput,
+            ArrayList<Employee> hourlyArr,
+            ArrayList<Employee> salariedArr,
+            ArrayList<Employee> salariedPlusCommissionArr) {
 
         String employeeType = Utility.chooseEmployeeType(userInput);
 

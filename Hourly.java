@@ -32,6 +32,7 @@ public class Hourly extends Employee {
         // this.setHourlyPay(Double.parseDouble(this.getUserInput().nextLine()));
         // out.print("Hours worked this past week \t: ");
         // this.setHoursWorkForWeek(Double.parseDouble(this.getUserInput().nextLine()));
+        // out.println("-----------------------------------------------------------------");
 
 
          // ------ delete this block later    ↓ 
@@ -40,6 +41,7 @@ public class Hourly extends Employee {
 
         out.println("Hours worked this past week \t: 41");
         this.setHoursWorkForWeek(41);
+        out.println("-----------------------------------------------------------------");
 
         // ------ delete this block later  ↑ 
 

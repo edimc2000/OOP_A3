@@ -84,7 +84,7 @@ public abstract class Employee {
 
         // ------ delete this block later    ↓ 
         int randomInt = random.nextInt(10000000);
-        out.println("");
+        out.println("\n-----------------------------------------------------------------");
         out.println("Name \t\t\t\t: Eddie " + randomInt);
         this.setName("Eddie " + randomInt);
 

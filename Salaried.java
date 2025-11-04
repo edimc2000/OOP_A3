@@ -22,10 +22,16 @@ public class Salaried extends Employee {
 
         // out.print("Salary \t\t\t\t: ");
         // this.setWeeklySalary(Double.parseDouble(this.getUserInput().nextLine()));
+        // out.println("-----------------------------------------------------------------");
 
         // ------ delete this block later ↓
         out.print("Salary \t\t\t\t: 700");
         this.setWeeklySalary(700);
+        out.print(this.getClass().toString());
+
+        if ((this.getClass().toString()).contains("plus")) {
+            out.println("\n-----------------------------------------------------------------");
+        }
 
         // ------ delete this block later ↑
     }
