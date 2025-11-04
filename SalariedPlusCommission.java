@@ -41,14 +41,14 @@ public class SalariedPlusCommission extends Salaried {
         // out.println("-----------------------------------------------------------------");
 
         // ------ delete this block later ↓
-        out.print("Sales for this past week \t: 1000 \n");
+        out.print("\nSales for this past week \t: 1000 \n");
         this.setSalesPastWeek(1000);
 
-        // out.print("Sales Commission rate\n (fraction paid to employee)\t: 0.10");
-        // this.setCommissionRate(0.10);
-        out.print("Sales Commission rate\n   (fraction paid to employee)\t: ");
-        this.setCommissionRate(Double.parseDouble(this.getUserInput().nextLine()));
-        out.println("-----------------------------------------------------------------");
+        out.print("Sales Commission rate\n (fraction paid to employee)\t: 0.10");
+        this.setCommissionRate(0.10);
+        // out.print("Sales Commission rate\n   (fraction paid to employee)\t: ");
+        // this.setCommissionRate(Double.parseDouble(this.getUserInput().nextLine()));
+        out.println("\n-----------------------------------------------------------------");
 
         // ------ delete this block later ↑
 

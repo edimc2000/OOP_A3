@@ -19,7 +19,7 @@ public abstract class Employee {
     private Scanner userInput = new Scanner(System.in);
 
     // debug delete later
-    Random random = new Random();
+    public Random random = new Random();
 
     public Scanner getUserInput() {
         return this.userInput;
@@ -83,13 +83,19 @@ public abstract class Employee {
         // this.setBirthWeek(Integer.parseInt(this.getUserInput().nextLine()));
 
         // ------ delete this block later    ↓ 
-        int randomInt = random.nextInt(10000000);
-        out.println("\n-----------------------------------------------------------------");
-        out.println("Name \t\t\t\t: Eddie " + randomInt);
-        this.setName("Eddie " + randomInt);
+        int randomInt = random.nextInt(0,999);
+        String [] firstName = {"Eva", "Tony", "Bill", "Nancy", "Stewart","John"};
+        String [] lastName = {"Sparks", "Cooper", "Wisconsim", "Eta", "Little","Silvers"};
+        String randomName = firstName[random.nextInt(0, 5)]; 
+        String randomLast = lastName[random.nextInt(0, 5)]; 
 
-        out.println("Social Security Number \t\t: 888-999-111" + randomInt);
-        this.setSocialSecurityNumber("888-999-111" + randomInt);
+
+        out.println("\n-----------------------------------------------------------------");
+        out.println("Name \t\t\t\t: " + randomName + " " + randomLast);
+        this.setName( randomName + " " + randomLast);
+
+        out.println("Social Security Number \t\t: 888-999-" + randomInt);
+        this.setSocialSecurityNumber("888-999-" + randomInt);
 
         out.println("Birthday month \t\t\t: 11");
         this.setBirthMonth(Integer.parseInt("11"));
