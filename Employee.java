@@ -4,6 +4,9 @@ import java.util.Scanner;
 import static java.lang.System.*;
 import java.util.Calendar;
 
+// debug delete later 
+import java.util.Random;
+
 public abstract class Employee {
 
     public static final double BONUS_AMOUNT = 100.00;
@@ -14,6 +17,9 @@ public abstract class Employee {
     private int birthWeek;
     private double paycheck = 0;
     private Scanner userInput = new Scanner(System.in);
+
+    // debug delete later
+    Random random = new Random();
 
     public Scanner getUserInput() {
         return this.userInput;
@@ -76,13 +82,14 @@ public abstract class Employee {
         // out.print("Birthday bonus week \t\t: ");
         // this.setBirthWeek(Integer.parseInt(this.getUserInput().nextLine()));
 
-
+        // ------ delete this block later    ↓ 
+        int randomInt = random.nextInt(10000000);
         out.println("");
-        out.println("Name \t\t\t\t: Eddie");
-        this.setName("Eddie");
+        out.println("Name \t\t\t\t: Eddie " + randomInt);
+        this.setName("Eddie " + randomInt);
 
-        out.println("Social Security Number \t\t: 888-999-111");
-        this.setSocialSecurityNumber("888-999-111");
+        out.println("Social Security Number \t\t: 888-999-111" + randomInt);
+        this.setSocialSecurityNumber("888-999-111" + randomInt);
 
         out.println("Birthday month \t\t\t: 11");
         this.setBirthMonth(Integer.parseInt("11"));
@@ -90,15 +97,15 @@ public abstract class Employee {
         out.println("Birthday bonus week \t\t: 2");
         this.setBirthWeek(Integer.parseInt("2"));
 
-    }
+        // ------ delete this block later  ↑ 
 
- 
+    }
 
     @Override // pay check computation missing
     public String toString() {
 
-        String display = String.format("%s\t\t: %s\n%s\t: %s\n%s\t\t: $%s",
-                "Employee", this.getName(), "Social Security Number", this.getSocialSecurityNumber(),
+        String display = String.format("\t%s\t\t: %s\n\t%s\t: %s\n\t%s\t\t: $%s",
+                "Employee", this.getName().toUpperCase(), "Social Security Number", this.getSocialSecurityNumber(),
                 "Paycheck", Helper.formatTwoDecimals(getPaycheck()));
         return display;
     }
@@ -113,7 +120,8 @@ public abstract class Employee {
         int currentWeekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
         int currentMonth = calendar.get(Calendar.MONTH) + 1;
 
-        // out.println("\n\nDEBUG -- current M" + currentMonth + " current W = " + currentWeekOfMonth + "\n\n");
+        // out.println("\n\nDEBUG -- current M" + currentMonth + " current W = " +
+        // currentWeekOfMonth + "\n\n");
         boolean isEligibleForBonus = (currentMonth == this.birthMonth) && (currentWeekOfMonth == this.birthWeek);
         return isEligibleForBonus ? BONUS_AMOUNT : 0;
     }

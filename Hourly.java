@@ -28,10 +28,21 @@ public class Hourly extends Employee {
 
     public void load() {
         super.load();
-        out.print("Hourly pay \t\t\t: ");
-        this.setHourlyPay(Double.parseDouble(this.getUserInput().nextLine()));
-        out.print("Hours worked this past week \t: ");
-        this.setHoursWorkForWeek(Double.parseDouble(this.getUserInput().nextLine()));
+        // out.print("Hourly pay \t\t\t: ");
+        // this.setHourlyPay(Double.parseDouble(this.getUserInput().nextLine()));
+        // out.print("Hours worked this past week \t: ");
+        // this.setHoursWorkForWeek(Double.parseDouble(this.getUserInput().nextLine()));
+
+
+         // ------ delete this block later    ↓ 
+        out.println("Hourly pay \t\t\t: 20");
+        this.setHourlyPay(20);
+
+        out.println("Hours worked this past week \t: 41");
+        this.setHoursWorkForWeek(41);
+
+        // ------ delete this block later  ↑ 
+
     }
 
     public double getEarnings() {

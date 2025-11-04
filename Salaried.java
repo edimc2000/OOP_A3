@@ -19,9 +19,15 @@ public class Salaried extends Employee {
 
     public void load() {
         super.load();
-        
-        out.print("Salary \t: ");
-        this.setWeeklySalary(Double.parseDouble(this.getUserInput().nextLine()));
+
+        // out.print("Salary \t\t\t\t: ");
+        // this.setWeeklySalary(Double.parseDouble(this.getUserInput().nextLine()));
+
+        // ------ delete this block later ↓
+        out.print("Salary \t\t\t\t: 700");
+        this.setWeeklySalary(700);
+
+        // ------ delete this block later ↑
     }
 
     public double getEarnings() {
