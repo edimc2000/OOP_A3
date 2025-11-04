@@ -9,22 +9,35 @@ public class Utility {
 
     public static void displayTitle() {
         clearScreen();
-        out.println("\n*************** Payroll Management Application *******************");
+
+        section("open");
+        printBalancedTitle(" ***** PAYROLL MANAGEMENT APPLICATION *****", 64);
+        section("close");
     }
 
     public static void displayReportTitle() {
-        out.println("\n\n********************* PAYCHECK REPORT ***************************\n");
+
+        section("open");
+        printBalancedTitle(" ***** PAYCHECK REPORT *****", 64);
+        section("close");
     }
 
     public static void generateReport(List<Employee> employees, String title) {
         if (employees.size() > 0) {
-            out.println("\n" + title + " ---");
+            displayReportTitle();
+
+            section("open");
+            printBalancedTitle(title, 64);
+            section("close");
+
             int counter = 1;
             for (Employee emp : employees) {
-                out.print("\n" + counter);
+
+                out.print("\n  " + counter);
                 out.println(emp.toString());
                 counter++;
             }
+            section("divider");
         }
     }
 
@@ -44,13 +57,18 @@ public class Utility {
     }
 
     public static String chooseEmployeeType(Scanner userInput) {
-        out.println("\n----------------");
-        out.println("Select Pay Type");
-        out.println("----------------");
-        out.println(" 1 - Hourly\n 2 - Salaried \n 3 - Salaried plus Commission \n");
-        out.print("Enter your choice (1-3) \t: ");
-
+        section("open");
+        printBalancedTitle("ADD A PAYCHECK", 64);
+        out.println("├────────────────────────────────────────────────────────────────┤");
+        out.println(String.format("│%-64s│", (" SELECT PAY TYPE ")));
+        out.println(String.format("│%-32s│", "").replace(" ", " -").trim());
+        out.println(String.format("│%-64s│", ("    1 - Hourly")));
+        out.println(String.format("│%-64s│", ("    2 - Salaried ")));
+        out.println(String.format("│%-64s│", ("    3 - Salaried plus Commission")));
+        section("close");
+        out.print(" \n Enter your choice (1 - 3)\t: ");
         return userInput.nextLine();
+
     }
 
     public static void addEmployee(Scanner userInput,
@@ -95,7 +113,36 @@ public class Utility {
 
     // clear screen
     public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        out.print("\033[H\033[2J");
+        out.flush();
+    }
+
+    // formatting
+    public static void printBalancedTitle(String title, int totalWidth) {
+        // Calculate the exact padding needed for center alignment
+        int totalSpaces = totalWidth - title.length();
+        int leftSpaces = totalSpaces / 2;
+        int rightSpaces = totalSpaces - leftSpaces;
+
+        String formatted = " ".repeat(leftSpaces) + title + " ".repeat(rightSpaces);
+        System.out.println(String.format("│%s│", formatted));
+    }
+
+    // formatting sections
+
+    public static void section(String direction) {
+        if (direction.equals("open")) {
+            out.println("\n");
+            out.println("┌────────────────────────────────────────────────────────────────┐");
+
+        }
+        if (direction.equals("close")) {
+            out.println("└────────────────────────────────────────────────────────────────┘");
+
+        }
+
+        if (direction.equals("divider")) {
+            out.println("\n─────────────────────────────────────────────────────────────────");
+        }
     }
 }

@@ -20,21 +20,20 @@ public class Salaried extends Employee {
     public void load() {
         super.load();
 
-        // out.print("Salary \t\t\t\t: ");
+        // out.print("  Salary \t\t\t: ");
         // this.setWeeklySalary(Double.parseDouble(this.getUserInput().nextLine()));
         // if (!(this.getClass().toString()).contains("Plus")) {
-        // out.println("-----------------------------------------------------------------");
+        //     out.println("-----------------------------------------------------------------");
         // }
 
-        // ------ delete this block later ↓
+        // ------ bypass scanner ↓
         int randomSalary = random.nextInt(200, 1000);
-        out.print("Salary \t\t\t\t: " + randomSalary);
+        out.print("  Salary \t\t\t: " + randomSalary);
         this.setWeeklySalary(randomSalary);
         if (!(this.getClass().toString()).contains("Plus")) {
-            out.println("\n-----------------------------------------------------------------");
+        out.println("\n-----------------------------------------------------------------");
         }
-
-        // ------ delete this block later ↑
+        // ------ bypass scanner ↑
     }
 
     public double getEarnings() {

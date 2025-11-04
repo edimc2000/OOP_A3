@@ -69,41 +69,41 @@ public abstract class Employee {
     public void load() {
         Scanner userInput = new Scanner(System.in);
 
-        // out.println("");
+        out.println("\n────────────────────────────────────────────────────────────────");
         // out.print("Name \t\t\t\t: ");
         // this.setName(this.getUserInput().nextLine());
 
         // out.print("Social Security Number \t\t: ");
         // this.setSocialSecurityNumber(this.getUserInput().nextLine());
 
-        // out.print("Birthday month \t\t\t: ");
+        // out.print("Birthday month (1- 12) \t\t: ");
         // this.setBirthMonth(Integer.parseInt(this.getUserInput().nextLine()));
 
-        // out.print("Birthday bonus week \t\t: ");
+        // out.print("Birthday bonus week (1 - 4) \t: ");
         // this.setBirthWeek(Integer.parseInt(this.getUserInput().nextLine()));
 
-        // ------ delete this block later    ↓ 
-        int randomInt = random.nextInt(0,999);
-        String [] firstName = {"Eva", "Tony", "Bill", "Nancy", "Stewart","John"};
-        String [] lastName = {"Sparks", "Cooper", "Wisconsim", "Eta", "Little","Silvers"};
-        String randomName = firstName[random.nextInt(0, 5)]; 
-        String randomLast = lastName[random.nextInt(0, 5)]; 
+        // ------ bypass scanner ↓
 
+        int randomInt = random.nextInt(0, 999);
+        String[] firstName = { "Eva", "Tony", "Bill", "Nancy", "Stewart", "John" };
+        String[] lastName = { "Sparks", "Cooper", "Wisconsim", "Eta", "Little", "Silvers" };
+        String randomName = firstName[random.nextInt(0, 5)];
+        String randomLast = lastName[random.nextInt(0, 5)];
 
-        out.println("\n-----------------------------------------------------------------");
-        out.println("Name \t\t\t\t: " + randomName + " " + randomLast);
-        this.setName( randomName + " " + randomLast);
+        
+        out.println("  Name \t\t\t\t: " + randomName + " " + randomLast);
+        this.setName(randomName + " " + randomLast);
 
-        out.println("Social Security Number \t\t: 888-999-" + randomInt);
+        out.println("  Social Security Number \t: 888-999-" + randomInt);
         this.setSocialSecurityNumber("888-999-" + randomInt);
 
-        out.println("Birthday month \t\t\t: 11");
+        out.println("  Birthday month (1- 12) \t: 11");
         this.setBirthMonth(Integer.parseInt("11"));
 
-        out.println("Birthday bonus week \t\t: 2");
+        out.println("  Birthday bonus week (1 - 4) \t: 2");
         this.setBirthWeek(Integer.parseInt("2"));
 
-        // ------ delete this block later  ↑ 
+        // ------ bypass scanner ↑
 
     }
 

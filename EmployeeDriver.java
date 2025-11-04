@@ -24,8 +24,6 @@ public class EmployeeDriver {
             toContinue = Utility.tryAgain(userInput);
         }
 
-        Utility.displayReportTitle();
-
         Utility.generateReport(hourlyArr, "Hourly Employees");
         Utility.generateReport(salariedArr, "Salaried Employees");
         Utility.generateReport(salariedPlusCommissionArr, "Salaried + Commission Employees");
