@@ -2,22 +2,21 @@ package OOP_A3;
 
 import java.util.Scanner;
 import static java.lang.System.*;
-
 import java.util.Calendar;
 
-public class Employee {
+public abstract class Employee {
 
+    public static final double BONUS_AMOUNT = 100.00;
+    public static final double MAX_PAYCHECK = 1000.00;
     private String name;
     private String socialSecurityNumber;
     private int birthMonth;
     private int birthWeek;
     private double paycheck = 0;
+    private Scanner userInput = new Scanner(System.in);
 
-    Employee(String name, String socialSecurityNumber, int birthMonth, int birthWeek) {
-        this.name = name;
-        this.socialSecurityNumber = socialSecurityNumber;
-        this.birthMonth = birthMonth;
-        this.birthWeek = birthWeek;
+    public Scanner getUserInput() {
+        return this.userInput;
     }
 
     public String getName() {
@@ -41,8 +40,8 @@ public class Employee {
     }
 
     public void setPaycheck(double amount) {
-        
-        this.paycheck = amount > 1000 ? 1000 : amount;
+
+        this.paycheck = amount > MAX_PAYCHECK ? MAX_PAYCHECK : amount;
     }
 
     public void setName(String name) {
@@ -61,21 +60,39 @@ public class Employee {
         this.birthWeek = birthWeek;
     }
 
-    public static String[] load() {
+    public void load() {
         Scanner userInput = new Scanner(System.in);
 
-        out.print("Name \t: ");
-        String nameCapture = userInput.nextLine();
-        out.print("Social Security Number \t: ");
-        String ssnCapture = userInput.nextLine();
-        out.print("Birthday month \t: ");
-        String birthMonthCapture = userInput.nextLine();
-        out.print("Birthday bonus week \t: ");
-        String birthWeekCapture = userInput.nextLine();
+        // out.println("");
+        // out.print("Name \t\t\t\t: ");
+        // this.setName(this.getUserInput().nextLine());
 
-        String[] capturedData = { nameCapture, ssnCapture, birthMonthCapture, birthWeekCapture };
-        return capturedData;
+        // out.print("Social Security Number \t\t: ");
+        // this.setSocialSecurityNumber(this.getUserInput().nextLine());
+
+        // out.print("Birthday month \t\t\t: ");
+        // this.setBirthMonth(Integer.parseInt(this.getUserInput().nextLine()));
+
+        // out.print("Birthday bonus week \t\t: ");
+        // this.setBirthWeek(Integer.parseInt(this.getUserInput().nextLine()));
+
+
+        out.println("");
+        out.println("Name \t\t\t\t: Eddie");
+        this.setName("Eddie");
+
+        out.println("Social Security Number \t\t: 888-999-111");
+        this.setSocialSecurityNumber("888-999-111");
+
+        out.println("Birthday month \t\t\t: 11");
+        this.setBirthMonth(Integer.parseInt("11"));
+
+        out.println("Birthday bonus week \t\t: 2");
+        this.setBirthWeek(Integer.parseInt("2"));
+
     }
+
+ 
 
     @Override // pay check computation missing
     public String toString() {
@@ -94,11 +111,13 @@ public class Employee {
         // bonus
         Calendar calendar = Calendar.getInstance();
         int currentWeekOfMonth = calendar.get(Calendar.WEEK_OF_MONTH);
-        int currentMonth = calendar.get(Calendar.MONTH)+1;
+        int currentMonth = calendar.get(Calendar.MONTH) + 1;
 
-        out.println("\n\nDEBUG -- current M" + currentMonth+ " current W = " + currentWeekOfMonth +"\n\n");
+        // out.println("\n\nDEBUG -- current M" + currentMonth + " current W = " + currentWeekOfMonth + "\n\n");
         boolean isEligibleForBonus = (currentMonth == this.birthMonth) && (currentWeekOfMonth == this.birthWeek);
-        return isEligibleForBonus ? 100 : 0;
+        return isEligibleForBonus ? BONUS_AMOUNT : 0;
     }
+
+    public abstract double getEarnings();
 
 }
