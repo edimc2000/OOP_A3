@@ -4,6 +4,8 @@ import static java.lang.System.*;
 
 import java.util.Scanner;
 
+import OOP_A3.Utility;
+
 public class Hourly extends Employee {
     public static final double OVERTIME_MULTIPLIER = 1.5;
     private double hourlyPay;
@@ -29,21 +31,24 @@ public class Hourly extends Employee {
     public void load() {
         super.load();
 
-        // out.print("  Hourly pay \t\t\t: ");
+        // ------ scanner ↓ ------
+        // out.print(" Hourly pay \t\t\t: ");
         // this.setHourlyPay(Double.parseDouble(this.getUserInput().nextLine()));
-        // out.print("  Hours worked this past week \t: ");
+        // out.print(" Hours worked this past week \t: ");
         // this.setHoursWorkForWeek(Double.parseDouble(this.getUserInput().nextLine()));
+        // ------ scanner ↑ ------
 
-        // ------ bypass scanner ↓
+        // ------ ↓ for quick test: uncomment below to bypass scanner while commenting
+        // ------ out the scanner above
         out.println("  Hourly pay \t\t\t: 20");
         this.setHourlyPay(20);
 
         out.println("  Hours worked this past week \t: 41");
         this.setHoursWorkForWeek(41);
 
-        // ------ bypass scanner ↑
+        // ------ ↑ bypass scanner ↑
 
-        out.println("────────────────────────────────────────────────────────────────");
+        out.println(Utility.section("divider"));
     }
 
     public double getEarnings() {

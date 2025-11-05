@@ -24,14 +24,14 @@ public class EmployeeDriver {
             toContinue = Utility.tryAgain(userInput);
         }
 
+        if (hourlyArr.size() != 0 || salariedArr.size() != 0 || salariedPlusCommissionArr.size() != 0) {
+            Utility.displayReportTitle();
+        }
+
         Utility.generateReport(hourlyArr, "Hourly Employees");
         Utility.generateReport(salariedArr, "Salaried Employees");
         Utility.generateReport(salariedPlusCommissionArr, "Salaried + Commission Employees");
 
     }
 
-
-
-
-    
 }

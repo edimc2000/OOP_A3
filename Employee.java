@@ -69,7 +69,7 @@ public abstract class Employee {
     public void load() {
         Scanner userInput = new Scanner(System.in);
 
-        out.println("\n────────────────────────────────────────────────────────────────");
+        out.println(Utility.section("divider"));
         // out.print("Name \t\t\t\t: ");
         // this.setName(this.getUserInput().nextLine());
 
