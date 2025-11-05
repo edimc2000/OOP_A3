@@ -4,7 +4,7 @@ import static java.lang.System.*;
 
 import java.util.Scanner;
 
-import OOP_A3.shared.Helper;
+import shared.Helper;
 
 public class SalariedPlusCommission extends Salaried {
 

@@ -2,8 +2,11 @@ package OOP_A3;
 
 import static java.lang.System.*;
 
-import OOP_A3.shared.Helper;
 import java.util.Scanner;
+
+import shared.ColorStyle;
+import shared.Helper;
+
 import java.util.ArrayList;
 import java.util.List;
 

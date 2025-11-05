@@ -1,7 +1,6 @@
-package OOP_A3.shared;
+package shared;
 
 import static java.lang.System.*;
-import OOP_A3.ColorStyle;
 
 /**
  * Helper.java
