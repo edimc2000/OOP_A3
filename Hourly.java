@@ -5,6 +5,7 @@ import static java.lang.System.*;
 import java.util.Scanner;
 
 import OOP_A3.Utility;
+import OOP_A3.shared.Helper;
 
 public class Hourly extends Employee {
     public static final double OVERTIME_MULTIPLIER = 1.5;

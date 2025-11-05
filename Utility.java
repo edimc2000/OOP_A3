@@ -1,15 +1,18 @@
 package OOP_A3;
 
 import static java.lang.System.*;
+import OOP_A3.shared.Helper;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Utility {
 
     public static StringBuilder buildDisplay = new StringBuilder();
 
     public static void displayTitle(String appTitle) {
+        Helper.clearScreen();
         Helper.clearScreen();
         Helper.applyHighlighter(generateBoxedTitle(buildDisplay, appTitle).toString(),
                 ColorStyle.WHITE, ColorStyle.BLUE_BG);

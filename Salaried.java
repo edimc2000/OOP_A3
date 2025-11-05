@@ -4,6 +4,8 @@ import static java.lang.System.*;
 
 import java.util.Scanner;
 
+import OOP_A3.shared.Helper;
+
 public class Salaried extends Employee {
 
     private double weeklySalary;
