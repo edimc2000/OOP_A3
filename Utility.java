@@ -9,6 +9,13 @@ public class Utility {
 
     public static StringBuilder buildDisplay = new StringBuilder();
 
+    public static void displayTitle(String appTitle) {
+        Helper.clearScreen();
+        Helper.applyHighlighter(generateBoxedTitle(buildDisplay, appTitle).toString(),
+                ColorStyle.WHITE, ColorStyle.BLUE_BG);
+        resetDisplayBuilder();
+    }
+
     public static void displayError() {
         Helper.moveToLastCharPreviousLine("last", 40);
         Helper.applyHighlighter(" Invalid Input ", ColorStyle.RED, ColorStyle.WHITE_BG);
@@ -16,7 +23,7 @@ public class Utility {
 
     public static StringBuilder generateBoxedTitle(StringBuilder buildString, String title) {
         buildString.append(Helper.section("open") + "\n");
-        buildString.append(Helper.printBalancedTitle(" ***** " + title + " *****",
+        buildString.append(Helper.printBalancedTitle(title,
                 64, " │", "│ ") + "\n");
         buildString.append(Helper.section("close"));
         return buildString;
@@ -24,14 +31,6 @@ public class Utility {
 
     public static void resetDisplayBuilder() {
         buildDisplay.setLength(0);
-    }
-
-    public static void displayTitle() {
-        Helper.clearScreen();
-        Helper.applyHighlighter(generateBoxedTitle(buildDisplay, "PAYROLL MANAGEMENT APPLICATION").toString(),
-                ColorStyle.WHITE, ColorStyle.BLUE_BG);
-        resetDisplayBuilder();
-
     }
 
     public static void displayReportTitle() {
