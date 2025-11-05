@@ -10,7 +10,6 @@ package src;
  * @version 1.0
  */
 
-import static java.lang.System.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
