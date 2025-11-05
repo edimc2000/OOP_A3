@@ -50,7 +50,7 @@ public class SalariedPlusCommission extends Salaried {
         this.setCommissionRate(0.10);
         // ------ ↑ bypass scanner ↑
 
-        out.println(Utility.section("divider"));
+        out.println(Helper.section("divider"));
 
     }
 

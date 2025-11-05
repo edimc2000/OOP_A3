@@ -48,7 +48,7 @@ public class Hourly extends Employee {
 
         // ------ ↑ bypass scanner ↑
 
-        out.println(Utility.section("divider"));
+        out.println(Helper.section("divider"));
     }
 
     public double getEarnings() {

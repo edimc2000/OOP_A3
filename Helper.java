@@ -1,5 +1,7 @@
 package OOP_A3;
 
+import static java.lang.System.*;
+
 /**
  * Helper.java
  * The formatters and other helpers
@@ -61,7 +63,6 @@ public class Helper {
         return String.format("%,.4f", decimal);
     }
 
-
     /**
      * Formats a decimal number to zero decimal places with grouping separators.
      * Returns a string representation of the number formatted according to the
@@ -87,5 +88,75 @@ public class Helper {
      */
     public static String formatCommas(double decimal) {
         return String.format("%,.0f", decimal);
+    }
+
+    public static void moveToLastCharPreviousLine(String line, int position) {
+        // Move to end of current line
+        if (line.equals("current")) {
+            out.print("\033[999C"); // Move cursor right 999 columns (to end of line)
+        }
+
+        // Go to the last line first, then to end:
+        if (line.equals("last")) {
+            // out.print("\033[1A \033[1A"); // Move up two lines
+            out.print("\033[1A"); // Move up two lines
+            out.print("\033[" + position + "C");
+
+            // out.flush();
+        }
+    }
+
+    public static void applyHighlighter(String display, String foreground, String background) {
+        String[] lines = display.split("\n");
+        String colorCode = foreground + background;
+
+        for (String line : lines) {
+            out.println(colorCode + line + ColorStyle.RESET_FORMATTING);
+        }
+    }
+
+
+        // clear screen
+    public static void clearScreen() {
+        out.print("\033[H\033[2J");
+        out.flush();
+    }
+
+    // formatting sections
+
+    public static String section(String direction) {
+        StringBuilder headerDesign = new StringBuilder("");
+
+        if (direction.equals("open")) {
+            headerDesign.append(String.format(" ┌%-64s┐ ", "*".repeat(64))
+                    .replace("*", "─"));
+            return headerDesign.toString();
+
+        }
+        if (direction.equals("close")) {
+            headerDesign.append(String.format(" └%-64s┘ ", "*".repeat(64))
+                    .replace("*", "─"));
+            return headerDesign.toString();
+        }
+
+        if (direction.equals("divider")) {
+            headerDesign.append(String.format("%-69s", "")
+                    .replace(" ", "-").trim());
+            return headerDesign.toString();
+        }
+
+        return headerDesign.toString();
+
+    }
+
+        // formatting
+    public static String printBalancedTitle(String title, int totalWidth, String borderLeft, String borderRight) {
+        // Calculate the exact padding needed for center alignment
+        int totalSpaces = totalWidth - title.length();
+        int leftSpaces = totalSpaces / 2;
+        int rightSpaces = totalSpaces - leftSpaces;
+
+        String formatted = " ".repeat(leftSpaces) + title + " ".repeat(rightSpaces);
+        return String.format(borderLeft + "%s" + borderRight, formatted);
     }
 }

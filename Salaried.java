@@ -24,7 +24,7 @@ public class Salaried extends Employee {
         // out.print(" Salary \t\t\t: ");
         // this.setWeeklySalary(Double.parseDouble(this.getUserInput().nextLine()));
         // if (!(this.getClass().toString()).contains("Plus")) {
-        // out.println(Utility.section("divider"));
+        // out.println(Helper.section("divider"));
         // }
         // ------ scanner ↑ ------
 
@@ -34,7 +34,7 @@ public class Salaried extends Employee {
         out.print("  Salary \t\t\t: " + randomSalary + "\n");
         this.setWeeklySalary(randomSalary);
         if (!(this.getClass().toString()).contains("Plus")) {
-            out.println(Utility.section("divider"));
+            out.println(Helper.section("divider"));
         }
         // ------ ↑ bypass scanner ↑
     }
