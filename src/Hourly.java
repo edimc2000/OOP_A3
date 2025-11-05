@@ -1,11 +1,11 @@
-package OOP_A3;
+package src;
 
 import static java.lang.System.*;
 
 import java.util.Scanner;
 
-import OOP_A3.Utility;
 import shared.Helper;
+import src.Utility;
 
 public class Hourly extends Employee {
     public static final double OVERTIME_MULTIPLIER = 1.5;

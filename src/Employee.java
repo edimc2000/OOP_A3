@@ -1,4 +1,4 @@
-package OOP_A3;
+package src;
 
 import java.util.Scanner;
 
