@@ -33,9 +33,9 @@ public class Hourly extends Employee {
         super.load();
 
         // ------ scanner ↓ ------
-        // out.print(" Hourly pay \t\t\t: ");
+        // out.print("  Hourly pay \t\t\t: ");
         // this.setHourlyPay(Double.parseDouble(this.getUserInput().nextLine()));
-        // out.print(" Hours worked this past week \t: ");
+        // out.print("  Hours worked this past week \t: ");
         // this.setHoursWorkForWeek(Double.parseDouble(this.getUserInput().nextLine()));
         // ------ scanner ↑ ------
 

@@ -1,13 +1,12 @@
 package src;
 
 import java.util.Scanner;
-
-import shared.Helper;
-
 import static java.lang.System.*;
 import java.util.Calendar;
 
-// debug delete later 
+import shared.Helper;
+
+// used for random number generation for the test data 
 import java.util.Random;
 
 public abstract class Employee {
@@ -21,7 +20,6 @@ public abstract class Employee {
     private double paycheck = 0;
     private Scanner userInput = new Scanner(System.in);
 
-    // debug delete later
     public Random random = new Random();
 
     public Scanner getUserInput() {
@@ -70,52 +68,52 @@ public abstract class Employee {
     }
 
     public void load() {
-        Scanner userInput = new Scanner(System.in);
+        // Scanner userInput = new Scanner(System.in);
 
         out.println(Helper.section("divider"));
-        // out.print("Name \t\t\t\t: ");
-        // this.setName(this.getUserInput().nextLine());
+        out.print("  Name \t\t\t\t: ");
+        this.setName(this.getUserInput().nextLine());
 
-        // out.print("Social Security Number \t\t: ");
-        // this.setSocialSecurityNumber(this.getUserInput().nextLine());
+        out.print("  Social Security Number \t: ");
+        this.setSocialSecurityNumber(this.getUserInput().nextLine());
 
-        // out.print("Birthday month (1- 12) \t\t: ");
-        // this.setBirthMonth(Integer.parseInt(this.getUserInput().nextLine()));
+        out.print("  Birthday month (1- 12) \t: ");
+        this.setBirthMonth(Integer.parseInt(this.getUserInput().nextLine()));
 
-        // out.print("Birthday bonus week (1 - 4) \t: ");
-        // this.setBirthWeek(Integer.parseInt(this.getUserInput().nextLine()));
+        out.print("  Birthday bonus week (1 - 4) \t: ");
+        this.setBirthWeek(Integer.parseInt(this.getUserInput().nextLine()));
 
-        // ------ bypass scanner ↓
+        // ------ ↓ for quick test: uncomment below to bypass scanner while commenting
+        // ------ out the scanner above
+        // test data
+        // int randomInt = random.nextInt(0, 999);
+        // String[] firstName = { "Eva", "Tony", "Bill", "Nancy", "Stewart", "John" };
+        // String[] lastName = { "Sparks", "Cooper", "Wisconsim", "Eta", "Little",
+        // "Silvers" };
+        // String randomName = firstName[random.nextInt(0, 5)];
+        // String randomLast = lastName[random.nextInt(0, 5)];
 
-        int randomInt = random.nextInt(0, 999);
-        String[] firstName = { "Eva", "Tony", "Bill", "Nancy", "Stewart", "John" };
-        String[] lastName = { "Sparks", "Cooper", "Wisconsim", "Eta", "Little", "Silvers" };
-        String randomName = firstName[random.nextInt(0, 5)];
-        String randomLast = lastName[random.nextInt(0, 5)];
+        // out.println(" Name \t\t\t\t: " + randomName + " " + randomLast);
+        // this.setName(randomName + " " + randomLast);
 
-        
-        out.println("  Name \t\t\t\t: " + randomName + " " + randomLast);
-        this.setName(randomName + " " + randomLast);
+        // out.println(" Social Security Number \t: 888-999-" + randomInt);
+        // this.setSocialSecurityNumber("888-999-" + randomInt);
 
-        out.println("  Social Security Number \t: 888-999-" + randomInt);
-        this.setSocialSecurityNumber("888-999-" + randomInt);
+        // out.println(" Birthday month (1- 12) \t: 11");
+        // this.setBirthMonth(Integer.parseInt("11"));
 
-        out.println("  Birthday month (1- 12) \t: 11");
-        this.setBirthMonth(Integer.parseInt("11"));
+        // out.println(" Birthday bonus week (1 - 4) \t: 2");
+        // this.setBirthWeek(Integer.parseInt("2"));
 
-        out.println("  Birthday bonus week (1 - 4) \t: 2");
-        this.setBirthWeek(Integer.parseInt("2"));
-
-        // ------ bypass scanner ↑
+        // ------ ↑ bypass scanner ↑
 
     }
 
-    @Override // pay check computation missing
+    @Override
     public String toString() {
-
         String display = String.format("\t%s\t\t: %s\n\t%s\t: %s\n\t%s\t\t: $%s",
-                "Employee", this.getName().toUpperCase(), "Social Security Number", this.getSocialSecurityNumber(),
-                "Paycheck", Helper.formatTwoDecimals(getPaycheck()));
+                "Employee", this.getName().toUpperCase(), "Social Security Number",
+                this.getSocialSecurityNumber(), "Paycheck", Helper.formatTwoDecimals(getPaycheck()));
         return display;
     }
 
