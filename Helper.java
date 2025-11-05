@@ -115,8 +115,7 @@ public class Helper {
         }
     }
 
-
-        // clear screen
+    // clear screen
     public static void clearScreen() {
         out.print("\033[H\033[2J");
         out.flush();
@@ -149,7 +148,7 @@ public class Helper {
 
     }
 
-        // formatting
+    // formatting
     public static String printBalancedTitle(String title, int totalWidth, String borderLeft, String borderRight) {
         // Calculate the exact padding needed for center alignment
         int totalSpaces = totalWidth - title.length();

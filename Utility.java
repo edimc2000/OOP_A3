@@ -2,9 +2,6 @@ package OOP_A3;
 
 import static java.lang.System.*;
 import java.util.Scanner;
-
-import OOP_A3.Helper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,26 +14,31 @@ public class Utility {
         Helper.applyHighlighter(" Invalid Input ", ColorStyle.RED, ColorStyle.WHITE_BG);
     }
 
+    public static StringBuilder generateBoxedTitle(StringBuilder buildString, String title) {
+        buildString.append(Helper.section("open") + "\n");
+        buildString.append(Helper.printBalancedTitle(" ***** " + title + " *****",
+                64, " │", "│ ") + "\n");
+        buildString.append(Helper.section("close"));
+        return buildString;
+    }
+
+    public static void resetDisplayBuilder() {
+        buildDisplay.setLength(0);
+    }
+
     public static void displayTitle() {
         Helper.clearScreen();
-        buildDisplay.append(Helper.section("open") + "\n");
-        buildDisplay.append(Helper.printBalancedTitle(" ***** PAYROLL MANAGEMENT APPLICATION *****",
-                64, " │", "│ ") + "\n");
-        buildDisplay.append(Helper.section("close"));
-        Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.WHITE, ColorStyle.BLUE_BG);
-        buildDisplay.setLength(0);
+        Helper.applyHighlighter(generateBoxedTitle(buildDisplay, "PAYROLL MANAGEMENT APPLICATION").toString(),
+                ColorStyle.WHITE, ColorStyle.BLUE_BG);
+        resetDisplayBuilder();
 
     }
 
     public static void displayReportTitle() {
         out.println("");
-        buildDisplay.append(Helper.section("open") + "\n");
-        buildDisplay.append(Helper.printBalancedTitle(" ***** PAYCHECK REPORT *****",
-                64, " │", "│ ") + "\n");
-        buildDisplay.append(Helper.section("close"));
-        Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.WHITE, ColorStyle.BLUE_BG);
-
-        buildDisplay.setLength(0);
+        Helper.applyHighlighter(generateBoxedTitle(buildDisplay, "PAYCHECK REPORT").toString(),
+                ColorStyle.WHITE, ColorStyle.BLUE_BG);
+        resetDisplayBuilder();
         out.println("");
     }
 
@@ -45,9 +47,7 @@ public class Utility {
         if (employees.size() > 0) {
             out.print("\n ");
             buildDisplay.append(Helper.printBalancedTitle(title, 66, "", ""));
-
             Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.TORQUISE_BLUE, ColorStyle.BLACK_BG);
-
             out.println(Helper.section("divider"));
 
             int counter = 1;
@@ -57,7 +57,7 @@ public class Utility {
                 out.println(emp.toString());
                 counter++;
             }
-            buildDisplay.setLength(0);
+            resetDisplayBuilder();
         }
     }
 
@@ -91,7 +91,7 @@ public class Utility {
         buildDisplay.append("\n" + Helper.section("close"));
 
         Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.TORQUISE_BLUE, ColorStyle.BLACK_BG);
-        buildDisplay.setLength(0);
+        resetDisplayBuilder();
         out.println("");
 
         out.print(" \n Enter your choice (1 - 3)\t: ");
@@ -136,8 +136,4 @@ public class Utility {
 
     }
 
-
-
-     
-    
 }
