@@ -3,31 +3,104 @@ package src;
 import static java.lang.System.*;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 import shared.ColorStyle;
 import shared.Helper;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
+/**
+ * Utility.java
+ * The Utility class provides centralized utility methods for the payroll
+ * management system. Handles user interface display, input validation,
+ * report generation, and employee management. Serves as the main controller for
+ * user interactions and visual presentation.
+ * 
+ * @author Eddie C.
+ * @version 1.0
+ * @since 2025-11-05
+ */
 public class Utility {
 
+    /**
+     * Default cursor position for general error messages
+     */
+    private static final int ERROR_POSITION_GENERAL = 40;
+
+    /**
+     * Cursor position for specific detailed error messages
+     */
+    private static final int ERROR_POSITION_SPECIFIC = 56;
+
+    /**
+     * Retrieves the appropriate cursor position for error message display
+     * based on the error type. Provides consistent positioning for different
+     * types of error feedback.
+     * 
+     * @param type the type of error message: "general" for generic errors,
+     *             "specific" for detailed error messages
+     * @return the cursor position integer for the specified error type,
+     *         defaults to ERROR_POSITION_GENERAL for unknown types
+     */
+
+    public static int getErrorMessagePosition(String type) {
+
+        if (type.equals("general")) {
+            return ERROR_POSITION_GENERAL;
+        }
+        if (type.equals("specific")) {
+            return ERROR_POSITION_SPECIFIC;
+        }
+        return ERROR_POSITION_GENERAL;
+    }
+
+    /** StringBuilder instance for building dynamic display content */
     public static StringBuilder buildDisplay = new StringBuilder();
 
+    /**
+     * Displays the main application title screen with formatted borders and color
+     * highlighting. Clears the screen and presents the application title in a
+     * boxed format.
+     * 
+     * @param appTitle the title text to display for the application
+     */
     public static void displayTitle(String appTitle) {
-        Helper.clearScreen();
         Helper.clearScreen();
         Helper.applyHighlighter(generateBoxedTitle(buildDisplay, appTitle).toString(),
                 ColorStyle.WHITE, ColorStyle.BLUE_BG);
         resetDisplayBuilder();
     }
 
+    /**
+     * Displays a general error message for invalid input.
+     * Positions the error message appropriately and applies visual highlighting.
+     */
     public static void displayError() {
-        Helper.moveToLastCharPreviousLine("last", 40);
+        Helper.moveToLastCharPreviousLine("last", getErrorMessagePosition("general"));
         Helper.applyHighlighter(" Invalid Input ", ColorStyle.RED, ColorStyle.WHITE_BG);
     }
 
+    /**
+     * Displays a specific error message at a designated screen position.
+     * Provides targeted feedback for input validation failures.
+     * 
+     * @param specificMessage the detailed error message to display
+     * @param position        the screen position to display the error message
+     */
+
+    public static void displayError(String specificMessage, int position) {
+        Helper.moveToLastCharPreviousLine("last", position);
+        Helper.applyHighlighter(String.format(" %s ", specificMessage), ColorStyle.RED, ColorStyle.WHITE_BG);
+    }
+
+    /**
+     * Generates a formatted boxed title with centered text and borders.
+     * Creates a title display for various screen sections.
+     * 
+     * @param buildString the StringBuilder to append the formatted title to
+     * @param title       the text content to center within the box
+     * @return the StringBuilder with the appended boxed title
+     */
     public static StringBuilder generateBoxedTitle(StringBuilder buildString, String title) {
         buildString.append(Helper.section("open") + "\n");
         buildString.append(Helper.printBalancedTitle(title,
@@ -36,10 +109,19 @@ public class Utility {
         return buildString;
     }
 
+    /**
+     * Resets the display builder by clearing its content.
+     * Prepares the builder for new content generation.
+     */
     public static void resetDisplayBuilder() {
         buildDisplay.setLength(0);
     }
 
+    /**
+     * Displays the paycheck report title with formatted borders and color
+     * highlighting. Includes appropriate spacing before and after the title
+     * display.
+     */
     public static void displayReportTitle() {
         out.println("");
         Helper.applyHighlighter(generateBoxedTitle(buildDisplay, "PAYCHECK REPORT").toString(),
@@ -48,12 +130,18 @@ public class Utility {
         out.println("");
     }
 
+    /**
+     * Generates and displays a formatted employee report for the specified employee
+     * list. Only generates the report if the employee list is not empty.
+     * 
+     * @param employees the list of Employee objects to include in the report
+     * @param title     the section title to display for this employee category
+     */
     public static void generateReport(List<Employee> employees, String title) {
-
         if (employees.size() > 0) {
             out.print("\n ");
             buildDisplay.append(Helper.printBalancedTitle(title, 66, "", ""));
-            Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.TORQUISE_BLUE, ColorStyle.BLACK_BG);
+            Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.TURQUOISE_BLUE, ColorStyle.BLACK_BG);
             out.println(Helper.section("divider"));
 
             int counter = 1;
@@ -67,11 +155,17 @@ public class Utility {
         }
     }
 
+    /**
+     * Prompts the user to continue adding employees or exit the data entry process.
+     * Validates user input to ensure only 'Y' or 'N' responses are accepted.
+     * 
+     * @param userInput the Scanner object for reading user input
+     * @return true if user wants to add another employee, false otherwise
+     */
     public static boolean tryAgain(Scanner userInput) {
         boolean addAnother = true;
         String response = "y";
         while (addAnother) {
-
             out.print("\n Add another? (Y/N): \t\t: ");
             response = userInput.nextLine().toLowerCase();
             if (response.equals("y") || response.equals("n")) {
@@ -83,8 +177,15 @@ public class Utility {
         return choice;
     }
 
+    /**
+     * Displays the employee type selection menu and captures user choice.
+     * Presents three pay type options with formatted display and color
+     * highlighting.
+     * 
+     * @param userInput the Scanner object for reading user input
+     * @return the user's selection as a String ("1", "2", or "3")
+     */
     public static String chooseEmployeeType(Scanner userInput) {
-
         out.println("");
         buildDisplay.append(Helper.section("open"));
         buildDisplay.append("\n" + Helper.printBalancedTitle("ADD A PAYCHECK", 64, " │", "│ "));
@@ -96,15 +197,27 @@ public class Utility {
         buildDisplay.append("\n" + String.format(" │%-64s│ ", ("    3 - Salaried plus Commission")));
         buildDisplay.append("\n" + Helper.section("close"));
 
-        Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.TORQUISE_BLUE, ColorStyle.BLACK_BG);
+        Helper.applyHighlighter(buildDisplay.toString(), ColorStyle.TURQUOISE_BLUE, ColorStyle.BLACK_BG);
         resetDisplayBuilder();
         out.println("");
 
         out.print(" \n Enter your choice (1 - 3)\t: ");
         return userInput.nextLine();
-
     }
 
+    /**
+     * Adds a new employee to the appropriate list based on user selection.
+     * Creates the appropriate employee object, loads data, calculates earnings,
+     * and stores in the corresponding ArrayList.
+     * 
+     * @param userInput                 the Scanner object for reading user input
+     * @param hourlyArr                 ArrayList for storing Hourly employee
+     *                                  objects
+     * @param salariedArr               ArrayList for storing Salaried employee
+     *                                  objects
+     * @param salariedPlusCommissionArr ArrayList for storing SalariedPlusCommission
+     *                                  employee objects
+     */
     public static void addEmployee(Scanner userInput,
             ArrayList<Employee> hourlyArr,
             ArrayList<Employee> salariedArr,

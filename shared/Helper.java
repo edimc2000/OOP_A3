@@ -4,10 +4,15 @@ import static java.lang.System.*;
 
 /**
  * Helper.java
- * The formatters and other helpers
+ * The Helper class provides utility methods for text formatting, screen
+ * manipulation,
+ * and visual presentation in the payroll management system. Includes number
+ * formatting,
+ * cursor control, color application, and section display utilities.
  * 
- * Author: Eddie
- * Date: 2025-Oct-24
+ * @author Eddie C.
+ * @version 1.6
+ * @since 2025-10-24
  */
 
 public class Helper {
@@ -59,7 +64,7 @@ public class Helper {
      *          formatTwoDecimals(999999.9994);
      */
 
-    public static String formatfourDecimals(double decimal) {
+    public static String formatFourDecimals(double decimal) {
         return String.format("%,.4f", decimal);
     }
 
@@ -90,22 +95,43 @@ public class Helper {
         return String.format("%,.0f", decimal);
     }
 
+    /**
+     * Moves the console cursor to specific positions for precise text placement.
+     * Supports moving to the end of the current line or to previous lines with
+     * specific column positioning.
+     *
+     * @param line     the target line: "current" for current line end, "last" for
+     *                 previous line, "lastTwo" for two lines previous
+     * @param position the column position to move to on the target line
+     */
     public static void moveToLastCharPreviousLine(String line, int position) {
         // Move to end of current line
         if (line.equals("current")) {
             out.print("\033[999C"); // Move cursor right 999 columns (to end of line)
         }
 
-        // Go to the last line first, then to end:
+        // Go to the previous line first, then to position:
         if (line.equals("last")) {
-            // out.print("\033[1A \033[1A"); // Move up two lines
-            out.print("\033[1A"); // Move up two lines
+            out.print("\033[1A");
             out.print("\033[" + position + "C");
+        }
 
-            // out.flush();
+        // Go to the prev 2 lines first, then to position:
+        if (line.equals("lastTwo")) {
+            out.print("\033[1A \033[1A");
+            out.print("\033[" + position + "C");
         }
     }
 
+    /**
+     * Applies color highlighting to display content by splitting it into lines
+     * and applying foreground and background colors to each line individually.
+     * Automatically resets formatting after each line.
+     *
+     * @param display    the text content to be displayed with highlighting
+     * @param foreground the foreground color code from ColorStyle class
+     * @param background the background color code from ColorStyle class
+     */
     public static void applyHighlighter(String display, String foreground, String background) {
         String[] lines = display.split("\n");
         String colorCode = foreground + background;
@@ -115,14 +141,25 @@ public class Helper {
         }
     }
 
-    // clear screen
+    /**
+     * Clears the console screen using ANSI escape codes.
+     * This method works on most Unix-based terminals and Windows Command Prompt
+     * with ANSI support enabled.
+     */
     public static void clearScreen() {
         out.print("\033[H\033[2J");
         out.flush();
     }
 
-    // formatting sections
-
+    /**
+     * Generates formatted section borders for console display.
+     * Creates opening, closing, or divider lines with consistent styling.
+     *
+     * @param direction the type of section border to create:
+     *                  "open" - top border, "close" - bottom border,
+     *                  "divider" - horizontal separator line
+     * @return the formatted section border string
+     */
     public static String section(String direction) {
         StringBuilder headerDesign = new StringBuilder("");
 
@@ -148,7 +185,17 @@ public class Helper {
 
     }
 
-    // formatting
+    /**
+     * Centers a title within a specified width and adds border characters.
+     * Calculates optimal padding to achieve balanced centering for professional
+     * display formatting.
+     *
+     * @param title       the text to be centered
+     * @param totalWidth  the total width available for the title
+     * @param borderLeft  the left border character(s)
+     * @param borderRight the right border character(s)
+     * @return the formatted and centered title string with borders
+     */
     public static String printBalancedTitle(String title, int totalWidth, String borderLeft, String borderRight) {
         // Calculate the exact padding needed for center alignment
         int totalSpaces = totalWidth - title.length();
