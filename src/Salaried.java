@@ -2,7 +2,6 @@ package src;
 
 import static java.lang.System.*;
 
-import shared.ColorStyle;
 import shared.Helper;
 
 /**
@@ -18,6 +17,12 @@ import shared.Helper;
 
 public class Salaried extends Employee {
 
+    /** Creates Salaried employee with initial salary data. */
+    public Salaried(String name, String ssn, int birthMonth, int birthWeek, String weeklySalary) {
+        super(name, ssn, birthMonth, birthWeek);
+        this.setWeeklySalary(weeklySalary);
+    }
+
     /** The fixed weekly salary amount for this employee */
     private double weeklySalary;
 
@@ -29,8 +34,6 @@ public class Salaried extends Employee {
     public double getWeeklySalary() {
         return this.weeklySalary;
     }
-
-
 
     /**
      * Sets the weekly salary with validation and error handling.
@@ -45,7 +48,7 @@ public class Salaried extends Employee {
         this.weeklySalary = Utility.validatePositiveDouble(
                 weeklySalary,
                 "Salary",
-                "Salary must be greater than 0", 
+                "Salary must be greater than 0",
                 false);
     }
 

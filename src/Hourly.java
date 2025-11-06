@@ -1,7 +1,6 @@
 package src;
 
 import static java.lang.System.*;
-import shared.ColorStyle;
 import shared.Helper;
 
 /**
@@ -16,6 +15,14 @@ import shared.Helper;
  */
 
 public class Hourly extends Employee {
+
+    /**  Creates Hourly employee with initial pay data. */
+    public Hourly(String name, String ssn, int birthMonth, int birthWeek,
+            String hourlyPayRate, String hoursWorked) {
+        super(name, ssn, birthMonth, birthWeek);
+        this.setHourlyPayRate(hourlyPayRate);
+        this.setHoursWorkedForWeek(hoursWorked);
+    }
 
     /** Overtime multiplier constant for hours beyond 40 hours per week */
     public static final double OVERTIME_MULTIPLIER = 1.5;

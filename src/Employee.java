@@ -19,6 +19,23 @@ import shared.Helper;
  */
 
 public abstract class Employee {
+
+    /**
+     * Constructs a new Employee with specified personal information.
+     * 
+     * @param name                 the employee's full name
+     * @param socialSecurityNumber the employee's social security number
+     * @param birthMonth           the birth month (1-12) for bonus calculation
+     * @param birthWeek            the birth week (1-4) for bonus calculation
+     */
+    public Employee(String name, String socialSecurityNumber, int birthMonth, int birthWeek) {
+        this.name = name;
+        this.socialSecurityNumber = socialSecurityNumber;
+        this.birthMonth = birthMonth;
+        this.birthWeek = birthWeek;
+        this.paycheck = 0.0;
+    }
+
     /** Constant bonus amount awarded during birthday week */
     public static final double BONUS_AMOUNT = 100.00;
 
@@ -214,41 +231,17 @@ public abstract class Employee {
         out.println(Helper.section("divider"));
 
         /** Data capture */
-        // out.print(" Name \t\t\t\t: ");
-        // this.setName(getUserInput().nextLine());
+        out.print("  Name \t\t\t\t: ");
+        this.setName(getUserInput().nextLine());
 
-        // out.print(" Social Security Number \t: ");
-        // this.setSocialSecurityNumber(getUserInput().nextLine());
+        out.print("  Social Security Number \t: ");
+        this.setSocialSecurityNumber(getUserInput().nextLine());
 
-        // out.print(" Birthday month (1 - 12) \t: ");
-        // this.setBirthMonth(getUserInput().nextLine());
+        out.print("  Birthday month (1 - 12) \t: ");
+        this.setBirthMonth(getUserInput().nextLine());
 
-        // out.print(" Birthday bonus week (1 - 4) \t: ");
-        // this.setBirthWeek(getUserInput().nextLine());
-
-        // ------ ↓ for quick test: uncomment below to bypass scanner while commenting
-        // ------ out the scanner above
-        // test data
-        // int randomInt = random.nextInt(0, 999);
-        // String[] firstName = { "Eva", "Tony", "Bill", "Nancy", "Stewart", "John" };
-        // String[] lastName = { "Sparks", "Cooper", "Wisconsim", "Eta", "Little",
-        // "Silvers" };
-        // String randomName = firstName[random.nextInt(0, 5)];
-        // String randomLast = lastName[random.nextInt(0, 5)];
-
-        out.println(" Name \t\t\t\t: Edd");
-        this.setName("Edd");
-
-        out.println(" Social Security Number \t: 888-999-");
-        this.setSocialSecurityNumber("888-999-");
-
-        out.println(" Birthday month (1- 12) \t: 11");
-        this.setBirthMonth("11");
-
-        out.println(" Birthday bonus week (1 - 4) \t: 2");
-        this.setBirthWeek("2");
-
-        // ------ ↑ bypass scanner ↑
+        out.print("  Birthday bonus week (1 - 4) \t: ");
+        this.setBirthWeek(getUserInput().nextLine());
 
     }
 

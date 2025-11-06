@@ -2,7 +2,7 @@ package src;
 
 import static java.lang.System.*;
 
-import shared.ColorStyle;
+
 import shared.Helper;
 
 /**
@@ -17,6 +17,14 @@ import shared.Helper;
  */
 
 public class SalariedPlusCommission extends Salaried {
+
+    /** Creates employee with salary, sales, and commission data. */
+    public SalariedPlusCommission(String name, String ssn, int birthMonth, int birthWeek,
+            String weeklySalary, String salesPastWeek, String commissionRate) {
+        super(name, ssn, birthMonth, birthWeek, weeklySalary);
+        this.setSalesPastWeek(salesPastWeek);
+        this.setCommissionRate(commissionRate);
+    }
 
     /** The sales amount in the past week */
     private double salesPastWeek;
@@ -60,7 +68,6 @@ public class SalariedPlusCommission extends Salaried {
                 true); // true = can be >= 0
     }
 
-   
     /**
      * Sets the commission rate with validation and error handling.
      * Delegates to utility method for non-negative double validation with attempt
