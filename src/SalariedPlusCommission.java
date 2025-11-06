@@ -43,53 +43,39 @@ public class SalariedPlusCommission extends Salaried {
     }
 
     /**
-     * Sets the sales amount with validation and error handling.
-     * If an invalid sales amount is provided, displays error messages and
-     * re-prompts the user until valid input is received.
+     * Sets the sales amount for the past week with validation and error handling.
+     * Delegates to utility method for non-negative double validation with attempt
+     * tracking. Displays appropriate error messages and re-prompts until valid
+     * input is received.
      * 
-     * @param amount the sales amount to validate and set (must be non-negative)
+     * @param salesPastWeek the sales amount as a string to validate and
+     *                      convert to double (must be non-negative)
      */
-    public void setSalesPastWeek(double amount) {
-        while (amount < 0) {
-            Utility.displayError();
-            Utility.displayError("Sales amount cannot be negative",
-                    Utility.getErrorMessagePosition("specific"));
-            Helper.applyHighlighter("  Sales for this past week \t: ", ColorStyle.BRIGHT_YELLOW, ColorStyle.BLACK_BG);
-            Helper.moveToLastCharPreviousLine("last", 34);
 
-            try {
-                amount = Double.parseDouble(Employee.getUserInput().nextLine());
-            } catch (NumberFormatException e) {
-                amount = -1; // Force loop to continue
-            }
-        }
-        this.salesPastWeek = amount;
+    public void setSalesPastWeek(String salesPastWeek) {
+        this.salesPastWeek = Utility.validatePositiveDouble(
+                salesPastWeek,
+                "Sales (past week)",
+                "Sales amount cannot be negative",
+                true); // true = can be >= 0
     }
 
+   
     /**
      * Sets the commission rate with validation and error handling.
-     * If an invalid commission rate is provided, displays error messages and
-     * re-prompts the user until valid input is received.
+     * Delegates to utility method for non-negative double validation with attempt
+     * tracking. Displays appropriate error messages and re-prompts until valid
+     * input is received.
      * 
-     * @param rate the commission rate to validate and set (must be between 0 and 1
-     *             inclusive)
+     * @param commissionRate the commission rate as a string to validate and
+     *                       convert to double (must be non-negative)
      */
-    public void setCommissionRate(double rate) {
-        while (rate < 0 || rate > 1) {
-            Utility.displayError();
-            Utility.displayError("Commission rate must be between 0 and 1",
-                    Utility.getErrorMessagePosition("specific"));
-            Helper.applyHighlighter("  Sales Commission rate\n  (fraction paid to employee)\t: ",
-                    ColorStyle.BRIGHT_YELLOW, ColorStyle.BLACK_BG);
-            Helper.moveToLastCharPreviousLine("last", 34);
-
-            try {
-                rate = Double.parseDouble(Employee.getUserInput().nextLine());
-            } catch (NumberFormatException e) {
-                rate = -1; // Force loop to continue
-            }
-        }
-        this.commissionRate = rate;
+    public void setCommissionRate(String commissionRate) {
+        this.commissionRate = Utility.validatePositiveDouble(
+                commissionRate,
+                "Commission rate",
+                "Commission rate must be non-negative",
+                true); // true = allow zero values
     }
 
     /**
@@ -111,10 +97,10 @@ public class SalariedPlusCommission extends Salaried {
         super.load();
 
         out.print("  Sales for this past week \t: ");
-        this.setSalesPastWeek(Double.parseDouble(Employee.getUserInput().nextLine()));
+        this.setSalesPastWeek(Employee.getUserInput().nextLine());
 
         out.print("  Sales Commission rate\n  (fraction paid to employee)\t: ");
-        this.setCommissionRate(Double.parseDouble(Employee.getUserInput().nextLine()));
+        this.setCommissionRate(Employee.getUserInput().nextLine());
 
         out.println(Helper.section("divider"));
 

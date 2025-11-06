@@ -46,51 +46,39 @@ public class Hourly extends Employee {
 
     /**
      * Sets the hourly pay rate with validation and error handling.
-     * If an invalid pay rate is provided, displays error messages and re-prompts
-     * the user until valid input is received.
+     * Delegates to utility method for positive double validation with attempt
+     * tracking. Displays appropriate error messages and re-prompts until valid
+     * input is received.
      * 
-     * @param hourlyPayRate the hourly pay rate to validate and set (must be
-     *                      positive)
+     * @param hourlyPayRate the hourly pay rate as a string to validate and
+     *                      convert to double
      */
-    public void setHourlyPayRate(double hourlyPayRate) {
-        while (hourlyPayRate <= 0) {
-            Utility.displayError();
-            Utility.displayError("Hourly pay must be greater than 0", Utility.getErrorMessagePosition("specific"));
-            Helper.applyHighlighter("  Hourly pay \t\t\t: ", ColorStyle.BRIGHT_YELLOW, ColorStyle.BLACK_BG);
-            Helper.moveToLastCharPreviousLine("last", 34);
+    public void setHourlyPayRate(String hourlyPayRate) {
 
-            try {
-                hourlyPayRate = Double.parseDouble(Employee.getUserInput().nextLine());
-            } catch (NumberFormatException e) {
-                hourlyPayRate = -1; // Force loop to continue
-            }
-        }
-        this.hourlyPayRate = hourlyPayRate;
+        this.hourlyPayRate = Utility.validatePositiveDouble(
+                hourlyPayRate,
+                "Hourly pay",
+                "Hourly pay must be greater than 0",
+                false);
     }
 
     /**
-     * Sets the hours worked with validation and error handling.
-     * If invalid hours are provided, displays error messages and re-prompts
-     * the user until valid input is received.
+     * Sets the hours worked for the past week with validation and error handling.
+     * Delegates to utility method for positive double validation with attempt
+     * tracking. Displays appropriate error messages and re-prompts until valid
+     * input is received.
      * 
-     * @param hoursWorkedForWeek the hours worked to validate and set (must be
-     *                           positive)
+     * @param hoursWorkedForWeek the hours worked as a string to validate and
+     *                           convert to double
      */
-    public void setHoursWorkedForWeek(double hoursWorkedForWeek) {
-        while (hoursWorkedForWeek <= 0) {
-            Utility.displayError();
-            Utility.displayError("Hours worked must be greater than 0", Utility.getErrorMessagePosition("specific"));
-            Helper.applyHighlighter("  Hours worked this past week \t: ", ColorStyle.BRIGHT_YELLOW,
-                    ColorStyle.BLACK_BG);
-            Helper.moveToLastCharPreviousLine("last", 34);
+    public void setHoursWorkedForWeek(String hoursWorkedForWeek) {
 
-            try {
-                hoursWorkedForWeek = Double.parseDouble(Employee.getUserInput().nextLine());
-            } catch (NumberFormatException e) {
-                hoursWorkedForWeek = -1; // Force loop to continue
-            }
-        }
-        this.hoursWorkedForWeek = hoursWorkedForWeek;
+        this.hoursWorkedForWeek = Utility.validatePositiveDouble(
+                hoursWorkedForWeek,
+                "Hours worked (past week)",
+                "Hours worked must be greater than 0",
+                false);
+
     }
 
     /**
@@ -103,9 +91,9 @@ public class Hourly extends Employee {
 
         /** Data capture */
         out.print("  Hourly pay \t\t\t: ");
-        this.setHourlyPayRate(Double.parseDouble(Employee.getUserInput().nextLine()));
-        out.print("  Hours worked this past week \t: ");
-        this.setHoursWorkedForWeek(Double.parseDouble(Employee.getUserInput().nextLine()));
+        this.setHourlyPayRate(Employee.getUserInput().nextLine());
+        out.print("  Hours worked (past week) \t: ");
+        this.setHoursWorkedForWeek(Employee.getUserInput().nextLine());
 
         /** Show line to divide section */
         out.println(Helper.section("divider"));

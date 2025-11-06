@@ -30,28 +30,23 @@ public class Salaried extends Employee {
         return this.weeklySalary;
     }
 
+
+
     /**
      * Sets the weekly salary with validation and error handling.
-     * If an invalid salary amount is provided, displays error messages and
-     * re-prompts the user until valid input is received.
+     * Delegates to utility method for positive double validation with attempt
+     * tracking. Displays appropriate error messages and re-prompts until valid
+     * input is received.
      * 
-     * @param amount the weekly salary to validate and set (must be positive)
+     * @param weeklySalary the weekly salary as a string to validate and
+     *                     convert to double
      */
-    public void setWeeklySalary(double amount) {
-        while (amount <= 0) {
-            Utility.displayError();
-            Utility.displayError("Salary must be greater than 0",
-                    Utility.getErrorMessagePosition("specific"));
-            Helper.applyHighlighter("  Salary \t\t\t: ", ColorStyle.BRIGHT_YELLOW, ColorStyle.BLACK_BG);
-            Helper.moveToLastCharPreviousLine("last", 34);
-
-            try {
-                amount = Double.parseDouble(Employee.getUserInput().nextLine());
-            } catch (NumberFormatException e) {
-                amount = -1; // Force loop to continue
-            }
-        }
-        this.weeklySalary = amount;
+    public void setWeeklySalary(String weeklySalary) {
+        this.weeklySalary = Utility.validatePositiveDouble(
+                weeklySalary,
+                "Salary",
+                "Salary must be greater than 0", 
+                false);
     }
 
     /**
@@ -62,7 +57,7 @@ public class Salaried extends Employee {
     public void load() {
         super.load();
         out.print("  Salary \t\t\t: ");
-        this.setWeeklySalary(Double.parseDouble(Employee.getUserInput().nextLine()));
+        this.setWeeklySalary(Employee.getUserInput().nextLine());
         if (shouldDisplayDivider()) {
             out.println(Helper.section("divider"));
         }

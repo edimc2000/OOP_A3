@@ -22,15 +22,37 @@ import shared.Helper;
  */
 public class Utility {
 
-    /**
-     * Default cursor position for general error messages
-     */
+    /** * Default cursor position for general error messages */
     private static final int ERROR_POSITION_GENERAL = 40;
 
-    /**
-     * Cursor position for specific detailed error messages
-     */
+    /** * Cursor position for specific detailed error messages */
     private static final int ERROR_POSITION_SPECIFIC = 56;
+
+    /** * Cursor position for input prompt */
+    private static final int CURSOR_POSITION_PROMPT = 34;
+
+    /** Error value constant for invalid input */
+    private static final int ERROR_VALUE = -1;
+
+    /** Maximum number of input attempts */
+    private static final int MAX_ATTEMPT = 5;
+
+    /** Closes the program if the maximum attempt limit is reached. */
+    public static void closeOnMaxAttempt(int counter) {
+        // out.println("COUNTER DEBUG => " + counter);
+        // out.println("COUNTER MAX => " + Utility.getMaxAttempt());
+        if (Utility.getMaxAttempt() == counter) {
+
+            Utility.displayError("Maximum attempts reached. Closing program ...",
+                    Utility.getErrorMessagePosition("specific"));
+            System.exit(1);
+        }
+    }
+
+    /** Returns a formatted string showing current and maximum attempts. */
+    public static String showAttempts(int counter) {
+        return "  ** Attempt " + (counter) + "/" + Utility.getMaxAttempt() + " ** ";
+    }
 
     /**
      * Retrieves the appropriate cursor position for error message display
@@ -51,7 +73,23 @@ public class Utility {
         if (type.equals("specific")) {
             return ERROR_POSITION_SPECIFIC;
         }
+        if (type.equals("cursor")) {
+            return CURSOR_POSITION_PROMPT;
+        }
+
         return ERROR_POSITION_GENERAL;
+    }
+
+    /** Returns the error value for input validation. */
+    public static int getErrorValueForInput() {
+        return ERROR_VALUE;
+    }
+
+    /**
+     * Returns the maximum number of input attempts .
+     */
+    public static int getMaxAttempt() {
+        return MAX_ATTEMPT;
     }
 
     /** StringBuilder instance for building dynamic display content */
@@ -76,7 +114,7 @@ public class Utility {
      * Positions the error message appropriately and applies visual highlighting.
      */
     public static void displayError() {
-        Helper.moveToLastCharPreviousLine("last", getErrorMessagePosition("general"));
+        Helper.moveToPosition("last", getErrorMessagePosition("general"));
         Helper.applyHighlighter(" Invalid Input ", ColorStyle.RED, ColorStyle.WHITE_BG);
     }
 
@@ -89,7 +127,7 @@ public class Utility {
      */
 
     public static void displayError(String specificMessage, int position) {
-        Helper.moveToLastCharPreviousLine("last", position);
+        Helper.moveToPosition("last", position);
         Helper.applyHighlighter(String.format(" %s ", specificMessage), ColorStyle.RED, ColorStyle.WHITE_BG);
     }
 
@@ -253,6 +291,51 @@ public class Utility {
                 break;
         }
 
+    }
+
+    /**
+     * Validates and converts a string to a positive or non-negative double with
+     * attempt tracking.
+     * 
+     * @param input        the string input to validate and convert to double
+     * @param fieldName    the display name for the field (e.g., "Salary", "Sales")
+     * @param errorMessage the specific error message for invalid range
+     * @param allowZero    true to allow zero values (non-negative validation),
+     *                     false to require positive values (greater than zero)
+     * @return the validated double value meeting the specified range criteria
+     */
+    public static double validatePositiveDouble(String input, String fieldName, String errorMessage,
+            boolean allowZero) {
+        double convertedValue = Helper.stringToDouble(input);
+        int counter = 1;
+
+        // Flexible condition: <= 0 for positive-only, < 0 for non-negative
+        boolean isInvalid = allowZero ? (convertedValue < 0) : (convertedValue <= 0);
+
+        while (isInvalid && counter <= Utility.getMaxAttempt()) {
+            Utility.displayError();
+
+            if (convertedValue == Utility.getErrorValueForInput()) {
+                Utility.displayError("Please enter a valid number" +
+                        Utility.showAttempts(counter), Utility.getErrorMessagePosition("specific"));
+            } else {
+                Utility.displayError(errorMessage +
+                        Utility.showAttempts(counter), Utility.getErrorMessagePosition("specific"));
+            }
+
+            Utility.closeOnMaxAttempt(counter);
+            counter++;
+
+            Helper.applyHighlighter(String.format("  %-29s : ", fieldName), ColorStyle.BRIGHT_YELLOW,
+                    ColorStyle.BLACK_BG);
+            Helper.moveToPosition("last", Utility.getErrorMessagePosition("cursor"));
+
+            String newInput = Employee.getUserInput().nextLine();
+            convertedValue = Helper.stringToDouble(newInput);
+            isInvalid = allowZero ? (convertedValue < 0) : (convertedValue <= 0);
+        }
+
+        return convertedValue;
     }
 
 }

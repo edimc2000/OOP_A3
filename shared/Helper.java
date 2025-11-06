@@ -104,10 +104,10 @@ public class Helper {
      *                 previous line, "lastTwo" for two lines previous
      * @param position the column position to move to on the target line
      */
-    public static void moveToLastCharPreviousLine(String line, int position) {
+    public static void moveToPosition(String line, int position) {
         // Move to end of current line
         if (line.equals("current")) {
-            out.print("\033[999C"); // Move cursor right 999 columns (to end of line)
+            out.print("\033[" + position + "C");
         }
 
         // Go to the previous line first, then to position:
@@ -205,4 +205,53 @@ public class Helper {
         String formatted = " ".repeat(leftSpaces) + title + " ".repeat(rightSpaces);
         return String.format(borderLeft + "%s" + borderRight, formatted);
     }
+
+    /**
+     * Converts a string to an integer with safe exception handling.
+     * This method provides a way to parse integer values from user input
+     * by catching NumberFormatException and returning a consistent error value.
+     *
+     * @example Helper.stringToInt("42"); // Returns: 42
+     * @example Helper.stringToInt("abc"); // Returns: -1
+     * @example Helper.stringToInt(""); // Returns: -1
+     * 
+     * @param value the string to be converted to an integer, can be null or empty
+     * @return the parsed integer value if conversion is successful;
+     *         returns -1 if the string cannot be parsed, is null, or contains
+     *         non-numeric characters
+     */
+    public static int stringToInt(String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return -1;
+        }
+
+        try {
+            return Integer.parseInt(value.trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    /**
+     * Converts a string to a double with exception handling.
+     * Returns -1 when the value cannot be parsed or is empty.
+     *
+     * @example Helper.stringToDouble("42.5"); // Returns: 42.5
+     * @example Helper.stringToDouble("abc"); // Returns: -1
+     * @example Helper.stringToDouble(""); // Returns: -1
+     *
+     * @param value the string to be converted to a double
+     * @return the parsed double value, or -1 on failure
+     */
+    public static double stringToDouble(String value) {
+        try {
+            String trimmed = value == null ? "" : value.trim();
+            if (trimmed.isEmpty())
+                return -1;
+            return Double.parseDouble(trimmed);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
 }

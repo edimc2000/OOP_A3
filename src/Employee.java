@@ -135,49 +135,72 @@ public abstract class Employee {
 
     /**
      * Sets the employee's birth month with validation and error handling.
-     * If an invalid month is provided, displays error messages and re-prompts
-     * the user until valid input is received.
+     * Accepts string input and converts it to an integer, then validates the range.
+     * If invalid input is provided (non-numeric or out of range), displays
+     * appropriate error messages and re-prompts the user until valid input is
+     * received.
      * 
-     * @param birthMonth the birth month to validate and set (1-12)
+     * @param birthMonth the birth month as a string to validate and convert to
+     *                   integer (1-12)
      */
-    public void setBirthMonth(int birthMonth) {
-        while (birthMonth < 1 || birthMonth > 12) {
-            Utility.displayError();
-            Utility.displayError("Birth month must be between 1 and 12", Utility.getErrorMessagePosition("specific"));
-            Helper.applyHighlighter("  Birthday month (1 - 12) \t: ", ColorStyle.BRIGHT_YELLOW, ColorStyle.BLACK_BG);
-            Helper.moveToLastCharPreviousLine("last", 34);
+    public void setBirthMonth(String birthMonth) {
+        int convertedBirthMonth = Helper.stringToInt(birthMonth);
 
-            try {
-                birthMonth = Integer.parseInt(getUserInput().nextLine());
-            } catch (NumberFormatException e) {
-                birthMonth = -1; // Force loop to continue
+        while (convertedBirthMonth < 1 || convertedBirthMonth > 12) {
+            Utility.displayError();
+
+            // Show appropriate error message
+            if (convertedBirthMonth == -1) {
+                Utility.displayError("Please enter a valid number (1-12)", Utility.getErrorMessagePosition("specific"));
+            } else {
+                Utility.displayError("Birth month must be between 1 and 12",
+                        Utility.getErrorMessagePosition("specific"));
             }
+
+            Helper.applyHighlighter("  Birthday month (1 - 12) \t: ", ColorStyle.BRIGHT_YELLOW, ColorStyle.BLACK_BG);
+            Helper.moveToPosition("last", Utility.getErrorMessagePosition("cursor"));
+
+            // Get new input and convert it
+            String askAgainBirthMonth = getUserInput().nextLine();
+            convertedBirthMonth = Helper.stringToInt(askAgainBirthMonth);
         }
-        this.birthMonth = birthMonth;
+        this.birthMonth = convertedBirthMonth;
     }
 
     /**
      * Sets the employee's birth week with validation and error handling.
-     * If an invalid week is provided, displays error messages and re-prompts
-     * the user until valid input is received.
+     * Accepts string input and converts it to an integer, then validates the range.
+     * If invalid input is provided (non-numeric or out of range), displays
+     * appropriate error messages and re-prompts the user until valid input is
+     * received.
      * 
-     * @param birthWeek the birth week to validate and set (1-4)
+     * @param birthWeek the birth week as a string to validate and convert to
+     *                  integer (1-4)
      */
-    public void setBirthWeek(int birthWeek) {
-        while (birthWeek < 1 || birthWeek > 4) {
-            Utility.displayError();
-            Utility.displayError("Birth week must be between 1 and 4", Utility.getErrorMessagePosition("specific"));
-            Helper.applyHighlighter("  Birthday bonus week (1 - 4) \t: ", ColorStyle.BRIGHT_YELLOW,
-                    ColorStyle.BLACK_BG);
-            Helper.moveToLastCharPreviousLine("last", 34);
+    public void setBirthWeek(String birthWeek) {
+        int convertedBirthWeek = Helper.stringToInt(birthWeek);
 
-            try {
-                birthWeek = Integer.parseInt(getUserInput().nextLine());
-            } catch (NumberFormatException e) {
-                birthWeek = -1; // Force loop to continue
+        while (convertedBirthWeek < 1 || convertedBirthWeek > 4) {
+            Utility.displayError();
+
+            // Show appropriate error message
+            if (convertedBirthWeek == -1) {
+                Utility.displayError("Please enter a valid number (1-4)",
+                        Utility.getErrorMessagePosition("specific"));
+            } else {
+                Utility.displayError("Birth week must be between 1 and 4",
+                        Utility.getErrorMessagePosition("specific"));
             }
+
+            Helper.applyHighlighter("  Birthday bonus week (1 - 4) \t: ",
+                    ColorStyle.BRIGHT_YELLOW, ColorStyle.BLACK_BG);
+            Helper.moveToPosition("last", Utility.getErrorMessagePosition("cursor"));
+
+            // Get new input and convert it
+            String askAgainBirthWeek = getUserInput().nextLine();
+            convertedBirthWeek = Helper.stringToInt(askAgainBirthWeek);
         }
-        this.birthWeek = birthWeek;
+        this.birthWeek = convertedBirthWeek;
     }
 
     /**
@@ -191,17 +214,42 @@ public abstract class Employee {
         out.println(Helper.section("divider"));
 
         /** Data capture */
-        out.print("  Name \t\t\t\t: ");
-        this.setName(getUserInput().nextLine());
+        // out.print(" Name \t\t\t\t: ");
+        // this.setName(getUserInput().nextLine());
 
-        out.print("  Social Security Number \t: ");
-        this.setSocialSecurityNumber(getUserInput().nextLine());
+        // out.print(" Social Security Number \t: ");
+        // this.setSocialSecurityNumber(getUserInput().nextLine());
 
-        out.print("  Birthday month (1 - 12) \t: ");
-        this.setBirthMonth(Integer.parseInt(getUserInput().nextLine()));
+        // out.print(" Birthday month (1 - 12) \t: ");
+        // this.setBirthMonth(getUserInput().nextLine());
 
-        out.print("  Birthday bonus week (1 - 4) \t: ");
-        this.setBirthWeek(Integer.parseInt(getUserInput().nextLine()));
+        // out.print(" Birthday bonus week (1 - 4) \t: ");
+        // this.setBirthWeek(getUserInput().nextLine());
+
+        // ------ ↓ for quick test: uncomment below to bypass scanner while commenting
+        // ------ out the scanner above
+        // test data
+        // int randomInt = random.nextInt(0, 999);
+        // String[] firstName = { "Eva", "Tony", "Bill", "Nancy", "Stewart", "John" };
+        // String[] lastName = { "Sparks", "Cooper", "Wisconsim", "Eta", "Little",
+        // "Silvers" };
+        // String randomName = firstName[random.nextInt(0, 5)];
+        // String randomLast = lastName[random.nextInt(0, 5)];
+
+        out.println(" Name \t\t\t\t: Edd");
+        this.setName("Edd");
+
+        out.println(" Social Security Number \t: 888-999-");
+        this.setSocialSecurityNumber("888-999-");
+
+        out.println(" Birthday month (1- 12) \t: 11");
+        this.setBirthMonth("11");
+
+        out.println(" Birthday bonus week (1 - 4) \t: 2");
+        this.setBirthWeek("2");
+
+        // ------ ↑ bypass scanner ↑
+
     }
 
     /**
