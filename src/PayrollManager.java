@@ -53,6 +53,8 @@ public class PayrollManager {
         Utility.generateReport(salariedArr, "Salaried Employees");
         Utility.generateReport(salariedPlusCommissionArr, "Salaried + Commission Employees");
 
+Employee.getUserInput().close();
     }
 
+    
 }

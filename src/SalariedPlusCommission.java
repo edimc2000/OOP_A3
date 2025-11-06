@@ -2,7 +2,6 @@ package src;
 
 import static java.lang.System.*;
 
-
 import shared.Helper;
 
 /**
@@ -24,6 +23,12 @@ public class SalariedPlusCommission extends Salaried {
         super(name, ssn, birthMonth, birthWeek, weeklySalary);
         this.setSalesPastWeek(salesPastWeek);
         this.setCommissionRate(commissionRate);
+    }
+
+    public SalariedPlusCommission() {
+        super("", "", 1, 1, "1.0");
+        this.salesPastWeek = 0.0;
+        this.commissionRate = 0.0;
     }
 
     /** The sales amount in the past week */
@@ -110,6 +115,8 @@ public class SalariedPlusCommission extends Salaried {
         this.setCommissionRate(Employee.getUserInput().nextLine());
 
         out.println(Helper.section("divider"));
+
+        
 
     }
 

@@ -23,6 +23,11 @@ public class Salaried extends Employee {
         this.setWeeklySalary(weeklySalary);
     }
 
+    public Salaried() {
+        super("", "", 1, 1);
+        this.weeklySalary = 0.0;
+    }
+
     /** The fixed weekly salary amount for this employee */
     private double weeklySalary;
 
@@ -64,7 +69,6 @@ public class Salaried extends Employee {
         if (shouldDisplayDivider()) {
             out.println(Helper.section("divider"));
         }
-
     }
 
     /**

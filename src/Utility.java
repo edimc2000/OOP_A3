@@ -293,16 +293,18 @@ public class Utility {
 
     }
 
+    
+
     /**
      * Validates and converts a string to a positive or non-negative double with
      * attempt tracking.
      * 
-     * @param input        the string input to validate and convert to double
-     * @param fieldName    the display name for the field (e.g., "Salary", "Sales")
-     * @param errorMessage the specific error message for invalid range
-     * @param allowZero    true to allow zero values (non-negative validation),
-     *                     false to require positive values (greater than zero)
-     * @return the validated double value meeting the specified range criteria
+ * @param input        the string input to validate and convert to double
+ * @param fieldName    the display name for the field (e.g., "Salary", "Sales")
+ * @param errorMessage the specific error message for invalid range
+ * @param allowZero    true to allow zero values (non-negative validation),
+ *                     false to require positive values (greater than zero)
+ * @return the validated double value meeting the specified range criteria
      */
     public static double validatePositiveDouble(String input, String fieldName, String errorMessage,
             boolean allowZero) {

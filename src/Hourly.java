@@ -16,12 +16,18 @@ import shared.Helper;
 
 public class Hourly extends Employee {
 
-    /**  Creates Hourly employee with initial pay data. */
+    /** Creates Hourly employee with initial pay data. */
     public Hourly(String name, String ssn, int birthMonth, int birthWeek,
             String hourlyPayRate, String hoursWorked) {
         super(name, ssn, birthMonth, birthWeek);
         this.setHourlyPayRate(hourlyPayRate);
         this.setHoursWorkedForWeek(hoursWorked);
+    }
+
+    public Hourly() {
+        super("", "", 1, 1); // Default values
+        this.hourlyPayRate = 0.0;
+        this.hoursWorkedForWeek = 0.0;
     }
 
     /** Overtime multiplier constant for hours beyond 40 hours per week */
@@ -104,6 +110,8 @@ public class Hourly extends Employee {
 
         /** Show line to divide section */
         out.println(Helper.section("divider"));
+
+        
     }
 
     /**

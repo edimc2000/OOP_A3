@@ -58,7 +58,7 @@ public abstract class Employee {
     private double paycheck;
 
     /** Shared scanner for user input */
-    private static final Scanner userInput = new Scanner(System.in);
+    private static Scanner userInput = new Scanner(System.in);
 
     /**
      * Abstract method to calculate employee earnings.
@@ -77,8 +77,16 @@ public abstract class Employee {
         return userInput;
     }
 
+    /** Close the scanner session */
+    public static void closeScanner(Scanner userInput) {
+        if (userInput != null) {
+            userInput.close();
+            userInput = null;
+        }
+    }
+
     /**
-     * Gets the employee's name.
+     * * Gets the employee's name. *
      * 
      * @return the employee's name as String
      */
