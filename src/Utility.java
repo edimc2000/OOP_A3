@@ -105,7 +105,7 @@ public class Utility {
     public static void displayTitle(String appTitle) {
         Helper.clearScreen();
         Helper.applyHighlighter(generateBoxedTitle(buildDisplay, appTitle).toString(),
-                ColorStyle.WHITE, ColorStyle.BLUE_BG);
+                ColorStyle.WHITE, ColorStyle.TURQUOISE_BLUE_BG );
         resetDisplayBuilder();
     }
 
