@@ -1,4 +1,4 @@
-This README.md file was created with - GitHub Copilot AI assistance. The remaining code was developed without AI support, except where explicitly indicated in the code comments.
+_This README.md file was created with assistance from AI - GitHub Copilot. The remaining code was developed without AI support, except where explicitly indicated in the code comments._
 
 # Payroll App (Inheritance & Polymorphism)
 
@@ -8,14 +8,22 @@ A small Java project demonstrating inheritance and polymorphism through a payrol
 
 Files in this repository (package declared as `src` in sources):
 
-- `src/Employee.java` — Abstract base class that captures common employee fields and birthday bonus logic.
-- `src/Hourly.java` — Hourly employee implementation (hourly rate, overtime calculation).
-- `src/Salaried.java` — Salaried employee implementation (weekly salary).
-- `src/SalariedPlusCommission.java` — Salaried plus commission implementation (salary + commission on sales).
-- `src/PayrollManager.java` — Driver with `main` that manages the interactive flow.
-- `src/Utility.java` — UI helpers, input validation (`validatePositiveDouble`), menu and report generation.
-- `shared/Helper.java` — Formatting and safe parsing helpers (`stringToInt`, `stringToDouble`) and small console helpers.
-- `shared/ColorStyle.java` — ANSI color constants (note: contains an in-source AI comment about assisted comment generation).
+- `src/Employee.java` 
+	- Abstract base class that captures common employee fields and birthday bonus logic.
+- `src/Hourly.java` 
+	- Hourly employee implementation (hourly rate, overtime calculation).
+- `src/Salaried.java` 
+	- Salaried employee implementation (weekly salary).
+- `src/SalariedPlusCommission.java` 
+	- Salaried plus commission implementation (salary + commission on sales).
+- `src/PayrollManager.java` 
+	- Driver with `main` that manages the interactive flow.
+- `src/Utility.java` 
+	- UI helpers, input validation (`validatePositiveDouble`), menu and report generation.
+- `shared/Helper.java` 
+	- Formatting and safe parsing helpers (`stringToInt`, `stringToDouble`) and small console helpers.
+- `shared/ColorStyle.java` 
+	- ANSI color constants (note: contains an in-source AI comment about assisted comment generation).
 
 ## Quick Features
 
@@ -102,40 +110,7 @@ Notes:
 
 This is a short representative transcript capturing the program flow and a sample final report. Prompts are shown followed by example user input.
 
-```
-Enter your choice (1 - 3)         : 1
-	Name                            : John Doe
-	Social Security Number          : 123-45-6789
-	Birthday month (1 - 12)         : 7
-	Birthday bonus week (1 - 4)     : 3
-	Hourly pay rate                 : 20.00
-	Hours worked this week          : 42
-
-Add another? (Y/N): Y
-Enter your choice (1 - 3)         : 3
-	Name                            : Jane Smith
-	Social Security Number          : 987-65-4321
-	Birthday month (1 - 12)         : 11
-	Birthday bonus week (1 - 4)     : 2
-	Weekly salary                   : 800.00
-	Gross sales                     : 2000.00
-	Commission rate (%)             : 5.0
-
-Add another? (Y/N): N
-
---- PAYCHECK REPORT ---
- 1
-		 Employee        : JOHN DOE
-		 Social Security Number : 123-45-6789
-		 Paycheck        : $1000.00
-
- 2
-		 Employee        : JANE SMITH
-		 Social Security Number : 987-65-4321
-		 Paycheck        : $900.00
-
-Total payroll: $1900.00
-```
+![A session with 1- hourly and 3- Salaried plu Commission, no error.](/screenshots/session1and3noerror.png)
 
 ## Validation and error handling
 

@@ -1,4 +1,6 @@
 *.class
 /bin
 sample*.txt
+*.txt
 /test
+/out
