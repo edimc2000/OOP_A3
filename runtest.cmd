@@ -1,0 +1,1 @@
+javac -d test\out src\*.java shared\*.java test\*.java && java -cp test\out test.TestProgramPayrolManager
