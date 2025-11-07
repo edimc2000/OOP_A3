@@ -163,7 +163,7 @@ public class Utility {
     public static void displayReportTitle() {
         out.println("");
         Helper.applyHighlighter(generateBoxedTitle(buildDisplay, "PAYCHECK REPORT").toString(),
-                ColorStyle.WHITE, ColorStyle.BLUE_BG);
+                ColorStyle.WHITE, ColorStyle.TURQUOISE_BLUE_BG );
         resetDisplayBuilder();
         out.println("");
     }
