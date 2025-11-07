@@ -139,7 +139,7 @@ public class TestProgramPayrolManager {
 
     public static void testUserInteraction() {
         // Build the input lines using the platform line separator to avoid accidental escape sequences
-        String[]  lines = new String[] { "1", "Loren Gullk", "866-978-125-1", "11", "2", "20", "41", "n" };
+        String[]  lines = new String[] { "1", "Loren Gullk", "866-978-125-1", "11", "2", "20", "41", "n", "1", "Jenny", "566-546-445-2", "12", "1", "15.75", "40", "n" };
         String testInput = String.join(System.lineSeparator(), Arrays.asList(lines)) + System.lineSeparator();
 
         String output = captureOutput(() -> {
