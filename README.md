@@ -122,16 +122,13 @@ Numeric parsing is centralized to avoid runtime exceptions. Key points:
 
 Example of a re-prompt:
 
-```
-	Hourly pay rate                 : twenty
-	>> Error: please enter a valid positive number (Attempt 1/5)
-	Hourly pay rate                 : 20.00
-```
+![A session with errors and re-prompt.](/screenshots/sessionInputErrors.png)
 
 ## Requirements
 
 - Java 8 or later
 - No external dependencies (uses only Java Standard Library)
+- ANSI enabled terminal for best experience 
 
 ## Contact
 
