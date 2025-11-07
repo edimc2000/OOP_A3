@@ -17,7 +17,17 @@ import shared.Helper;
 
 public class SalariedPlusCommission extends Salaried {
 
-    /** Creates employee with salary, sales, and commission data. */
+    /**
+     * Creates an employee with salary, sales, and commission data.
+     * 
+     * @param name           the employee's name
+     * @param ssn            the employee's social security number
+     * @param birthMonth     the employee's birth month (1-12)
+     * @param birthWeek      the employee's birth week (1-4)
+     * @param weeklySalary   the weekly base salary as a string
+     * @param salesPastWeek  the sales amount for the past week as a string
+     * @param commissionRate the commission rate as a string
+     */
     public SalariedPlusCommission(String name, String ssn, int birthMonth, int birthWeek,
             String weeklySalary, String salesPastWeek, String commissionRate) {
         super(name, ssn, birthMonth, birthWeek, weeklySalary);
@@ -25,6 +35,11 @@ public class SalariedPlusCommission extends Salaried {
         this.setCommissionRate(commissionRate);
     }
 
+    /**
+     * Creates a default SalariedPlusCommission employee with empty values.
+     * Name and SSN are empty strings, birth month and week are set to 1,
+     * and sales/commission are set to 0. Weekly salary defaults to 1.0.
+     */
     public SalariedPlusCommission() {
         super("", "", 1, 1, "1.0");
         this.salesPastWeek = 0.0;
@@ -115,8 +130,6 @@ public class SalariedPlusCommission extends Salaried {
         this.setCommissionRate(Employee.getUserInput().nextLine());
 
         out.println(Helper.section("divider"));
-
-        
 
     }
 

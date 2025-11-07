@@ -17,12 +17,25 @@ import shared.Helper;
 
 public class Salaried extends Employee {
 
-    /** Creates Salaried employee with initial salary data. */
+    /**
+     * Creates a Salaried employee with initial salary data.
+     * 
+     * @param name         the employee's name
+     * @param ssn          the employee's social security number
+     * @param birthMonth   the employee's birth month (1-12)
+     * @param birthWeek    the employee's birth week (1-4)
+     * @param weeklySalary the weekly salary amount as a string
+     */
     public Salaried(String name, String ssn, int birthMonth, int birthWeek, String weeklySalary) {
         super(name, ssn, birthMonth, birthWeek);
         this.setWeeklySalary(weeklySalary);
     }
 
+    /**
+     * Creates a default Salaried employee with empty values.
+     * Name and SSN are empty strings, birth month and week are set to 1,
+     * and weekly salary is set to 0.
+     */
     public Salaried() {
         super("", "", 1, 1);
         this.weeklySalary = 0.0;

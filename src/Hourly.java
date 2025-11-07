@@ -16,7 +16,16 @@ import shared.Helper;
 
 public class Hourly extends Employee {
 
-    /** Creates Hourly employee with initial pay data. */
+    /**
+     * Creates an Hourly employee with initial pay data.
+     * 
+     * @param name          the employee's name
+     * @param ssn           the employee's social security number
+     * @param birthMonth    the employee's birth month (1-12)
+     * @param birthWeek     the employee's birth week (1-4)
+     * @param hourlyPayRate the hourly pay rate as a string
+     * @param hoursWorked   the hours worked for the week as a string
+     */
     public Hourly(String name, String ssn, int birthMonth, int birthWeek,
             String hourlyPayRate, String hoursWorked) {
         super(name, ssn, birthMonth, birthWeek);
@@ -24,6 +33,11 @@ public class Hourly extends Employee {
         this.setHoursWorkedForWeek(hoursWorked);
     }
 
+    /**
+     * Creates a default Hourly employee with empty values.
+     * Name and SSN are empty strings, birth month and week are set to 1,
+     * and pay rate/hours worked are set to 0.
+     */
     public Hourly() {
         super("", "", 1, 1); // Default values
         this.hourlyPayRate = 0.0;
@@ -111,7 +125,6 @@ public class Hourly extends Employee {
         /** Show line to divide section */
         out.println(Helper.section("divider"));
 
-        
     }
 
     /**

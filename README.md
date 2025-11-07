@@ -132,4 +132,4 @@ Example of a re-prompt:
 
 ## Contact
 
-If you have questions or need further changes, reply here or refer to the course instructor.
+If you have questions or need further changes, reply here or refer to the course materials.
